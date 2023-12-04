@@ -1,16 +1,14 @@
-name: Deploy to Firebase
+name: CI Snappies
 
 on:
   pull_request:
     branches: [main]
-  workflows_dispatch:
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  install:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -18,18 +16,7 @@ jobs:
           cache: "npm"
       - run: npm ci
 
-      - name: Setup Node.js
-      
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-      code_quality:
+  code_quality:
     runs-on: ubuntu-latest
     needs: [install]
     steps:
@@ -41,10 +28,25 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run prettier
-
-      - name: Deploy to Firebase
-        run: |
-          npm install -g firebase-tools
-          firebase deploy --token "$FIREBASE_TOKEN"
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+  test:
+    runs-on: ubuntu-latest
+    needs: [install]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.14
+          cache: "npm"
+      - run: npm ci
+      - run: npm test
+  build:
+    runs-on: ubuntu-latest
+    needs: [code_quality, test]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.14
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build
