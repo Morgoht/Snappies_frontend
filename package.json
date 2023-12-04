@@ -7,7 +7,14 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:front": "node dist/front/server/server.mjs"
+    "serve:ssr:front": "node dist/front/server/server.mjs",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "watch:lint": "eslint --watch .",
+    "watch:format": "prettier --write --watch .",
+    "fix:all":  "eslint . --fix && prettier --write",
+    "ci": "npm ci && npm run code:fix && npm run test"
   },
   "private": true,
   "dependencies": {
