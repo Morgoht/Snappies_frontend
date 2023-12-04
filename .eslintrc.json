@@ -1,8 +1,14 @@
 {
-    "plugins": ["angular"],
-    "extends": ["plugin:angular/recommended", "prettier"],
-    "rules": {
-      "prettier/prettier": ["error"]
-    }
-  }
-  
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "rules": {}
+}

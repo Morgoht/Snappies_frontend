@@ -13,7 +13,7 @@
     "format": "prettier --write .",
     "watch:lint": "eslint --watch .",
     "watch:format": "prettier --write --watch .",
-    "fix:all":  "eslint . --fix && prettier --write",
+    "fix:all": "eslint . --fix && prettier --write",
     "ci": "npm ci && npm run code:fix && npm run test"
   },
   "private": true,
@@ -43,6 +43,7 @@
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
     "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-angular": "^4.1.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
