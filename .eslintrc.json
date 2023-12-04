@@ -1,0 +1,8 @@
+{
+    "plugins": ["angular"],
+    "extends": ["plugin:angular/recommended", "prettier"],
+    "rules": {
+      "prettier/prettier": ["error"]
+    }
+  }
+  
