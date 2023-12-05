@@ -2,7 +2,7 @@ name: Snappies_frontend
 
 on:
   push:
-    branches: [CD_github]
+    branches: [feat/deployement]
   workflow_dispatch:
 
 jobs:
