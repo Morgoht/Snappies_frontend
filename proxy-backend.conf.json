@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "put link to backend here",
+    "secure": false,
+    "changeOrigin": true,
+    "auth": "loginIfNeeded:PasswordIfNeeeded",
+    "pathRewrite": {
+      "^/api": "/"
+    }
+  }
+}
