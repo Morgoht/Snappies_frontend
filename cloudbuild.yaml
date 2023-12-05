@@ -1,0 +1,16 @@
+steps:
+# Install
+- name: 'grc.io/cloud-builders/npm'
+  args: ['install']
+
+# Test
+- name: 'grc.io/cloud-builders/npm'
+  args: ['run', 'test:unit']
+
+# Build
+- name: 'grc.io/cloud-builders/npm'
+  args: ['run', 'build']
+
+# Deploy
+- name: 'grc.io/snappiespfe/firebase'
+  args: ['deploy']
