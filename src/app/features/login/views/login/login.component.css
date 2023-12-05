@@ -1,0 +1,34 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login-box {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form-group > * {
+    padding: 10px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.ng-valid.ng-touched {
+    width: 500% /* Green border color for valid input */
+}
+
+/* Styles pour les appareils mobiles */
+@media (max-width: 600px) {
+    .login-box {
+        width: 100%;  /* Utilise la largeur complète pour les petits écrans */
+        margin: 20px; /* Ajoute une marge autour du cadre pour éviter qu'il touche les bords */
+    }
+    .login-container {
+        padding: 10px; /* Padding pour éviter que les éléments touchent les bords */
+    }
+}
+

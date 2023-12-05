@@ -1,42 +1,6 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-# Local directory for generated artifacts
-.angular
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
-
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
-
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# Visual Studio Code
-.vscode/
-.history/*
-
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-
-# System files
-.DS_Store
-Thumbs.db
+# Default ignored files
+/shelf/
+/workspace.xml
 # Logs
 logs
 *.log
@@ -135,19 +99,50 @@ dist
 # Comment in the public line in if your project uses Gatsby and not Next.js
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+# Local directory for generated artifacts
+.angular
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
 
 # vuepress build output
 .vuepress/dist
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
 
 # vuepress v2.x temp and cache directory
 .temp
 .cache
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
 # Docusaurus cache and generated files
 .docusaurus
+# Visual Studio Code
+.vscode/
+.history/*
 
 # Serverless directories
 .serverless/
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
 
 # FuseBox cache
 .fusebox/
@@ -161,12 +156,13 @@ dist
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
-# Pack file
-*.pack
-
 # yarn v2
 .yarn/cache
 .yarn/unplugged
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+# System files
+.DS_Store
+Thumbs.db
+
