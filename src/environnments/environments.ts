@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:8380/akct/services/feedbacksDashboard/' // <---- Inserer ici le port du backend
+  apiBaseUrl: '' // <---- Inserer ici le port du backend
 };
 
 /*
