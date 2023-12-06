@@ -4,11 +4,11 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../../shared/shared.module";
 import {RouterOutlet} from '@angular/router';
-import {DeliveryPageComponent} from "./views/delivery-page/delivery-page.component";
+import {DeliveryRoundsPageComponent} from "./views/delivery-rounds-page/delivery-rounds-page.component";
 
 @NgModule({
   declarations: [
-    DeliveryPageComponent
+    DeliveryRoundsPageComponent
   ],
   imports: [
     SharedModule,

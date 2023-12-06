@@ -1,0 +1,7 @@
+<h2>Liste des tournées</h2>
+<ul>
+  <li *ngFor="let deliveryRound of deliveryRounds" (click)="afficherDetailsTournee(deliveryRound)">
+    {{ deliveryRound }}
+  </li>
+</ul>
+<router-outlet></router-outlet>
