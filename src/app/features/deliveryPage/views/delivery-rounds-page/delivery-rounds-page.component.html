@@ -1,8 +1,20 @@
 <h2>Liste des tournées</h2>
-<mat-action-list>
-  <mat-list-item *ngFor="let deliveryRound of deliveryRounds" (click)="afficherDetailsTournee(deliveryRound)"  class="mat-elevation-z2 custom-list-item" style="text-align: center;"> 
-    {{ deliveryRound }}</mat-list-item>
-</mat-action-list>
+<div class="d-grid gap-2">
+    <button
+        class="btn btn-secondary btn-lg"
+        *ngFor="let deliveryRound of deliveryRounds"
+        (click)="afficherDetailsTournee(deliveryRound)"
+    >
+        {{ deliveryRound }}
+    </button>
+</div>
+
+<ul class="list-group list-group-flush list-unstyled ">
+    <li class="list-group-item d-flex justify-content-center align-items-center" *ngFor="let deliveryRound of deliveryRounds">
+        <a class="text-center" (click)="afficherDetailsTournee(deliveryRound)">
+            {{ deliveryRound }}
+        </a>
+    </li>
+</ul>
+
 <router-outlet></router-outlet>
-
-

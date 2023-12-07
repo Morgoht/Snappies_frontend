@@ -1,13 +1,10 @@
-/* Ajout de styles spécifiques aux écrans mobiles avec une media query */
-@media only screen and (max-width: 767px) {
-    .custom-list-item {
-        margin-bottom: 10px; /* Ajoute de l'espace en bas de chaque élément */
-        background-color: #e0e0e0; /* Couleur de fond personnalisée */
-        color: #333; /* Couleur du texte personnalisée */
-        border-radius: 8px; /* Ajoute un peu de bordure arrondie */
-        padding: 10px; /* Ajoute du rembourrage à l'intérieur du bouton */
-        width: 80%; /* Ajuster la largeur à 100% pour occuper la largeur disponible sur mobile */
-        margin-left: auto; /* Centrer l'élément */
-        margin-right: auto; /* Centrer l'élément */
-    }
+.list-group-item{
+    background-color: #6c757d;
+    height: 4rem;
+    justify-content: center;
+    font-size: 2em;
+}
+a{
+    text-decoration: none;
+    color: black;
 }
