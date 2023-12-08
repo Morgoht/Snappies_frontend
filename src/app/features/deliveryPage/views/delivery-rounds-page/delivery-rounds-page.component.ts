@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delivery-rounds-page',
@@ -6,14 +7,16 @@ import { Component } from '@angular/core';
   styleUrl: './delivery-rounds-page.component.scss'
 })
 export class DeliveryRoundsPageComponent {
-  deliveryRounds = ['Tournée A', 'Tournée B', 'Tournée C', 'Tournée D'];
+  deliveryRounds = [
+    { id: 1, name: 'Tournée A' },
+    { id: 2, name: 'Tournée B' },
+    { id: 3, name: 'Tournée C' },
+    { id: 4, name: 'Tournée D' },
+  ];
 
-  afficherDetailsTournee(tournee: string) {
-    // Rediriger vers le composant des détails de la tournée avec la tournée sélectionnée
-    // Remplacez 'details' par le nom du composant que vous allez créer pour les détails de la tournée
-    // et utilisez la tournée comme paramètre pour identifier la tournée sélectionnée.
+  constructor(private router: Router) {}
 
-    // Exemple:
-    // this.router.navigate([DELIVERYROUNDSPAGEPATH, 'details', tournee]);
+  afficherDetailsTournee(deliveryRoundID: any) {
+    this.router.navigate(['/delivery-rounds', deliveryRoundID]);
   }
 }

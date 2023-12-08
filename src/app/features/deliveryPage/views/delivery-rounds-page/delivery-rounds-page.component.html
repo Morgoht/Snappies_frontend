@@ -3,9 +3,9 @@
     <button
         class="btn btn-secondary btn-lg"
         *ngFor="let deliveryRound of deliveryRounds"
-        (click)="afficherDetailsTournee(deliveryRound)"
+        (click)="afficherDetailsTournee(deliveryRound.id)"
     >
-        {{ deliveryRound }}
+        {{ deliveryRound.name }}
     </button>
 </div>
 <router-outlet></router-outlet>

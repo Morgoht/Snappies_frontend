@@ -8,6 +8,7 @@ import {
 import { DeliveryRoundsPageComponent } from './features/deliveryPage/views/delivery-rounds-page/delivery-rounds-page.component';
 import { AdminPageComponent } from './features/adminPage/views/admin-page/admin-page.component';
 import { LoginComponent } from './features/login/views/login/login.component';
+import { DeliveryRoundDetailPageComponent } from './features/deliveryPage/views/delivery-round-detail-page/delivery-round-detail-page.component';
 
 const routes: Routes = [
     { path: '', redirectTo: DELIVERYROUNDSPAGEPATH, pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
         ]
         */
     },
+    { path: DELIVERYROUNDSPAGEPATH + "/:id", component: DeliveryRoundDetailPageComponent },
     { path: ADMINPAGEPATH, component: AdminPageComponent },
     { path: LOGINPATH, component: LoginComponent },
 ];
