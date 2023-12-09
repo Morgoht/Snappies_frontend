@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { DELIVERYROUNDSPAGEPATH } from 'src/app/shared/constants/path.constant';
 
 @Component({
   selector: 'app-delivery-rounds-page',
@@ -17,6 +18,6 @@ export class DeliveryRoundsPageComponent {
   constructor(private router: Router) {}
 
   afficherDetailsTournee(deliveryRoundID: any) {
-    this.router.navigate(['/delivery-rounds', deliveryRoundID]);
+    this.router.navigate([DELIVERYROUNDSPAGEPATH, deliveryRoundID]);
   }
 }
