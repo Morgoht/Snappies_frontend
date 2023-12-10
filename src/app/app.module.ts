@@ -8,6 +8,8 @@ import {LoginModule} from "./features/login/login.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { GraphQLModule } from './graphql.module';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { CommonModule } from '@angular/common';
       LoginModule,
       ReactiveFormsModule,
       BrowserAnimationsModule,
+      HttpClientModule,
+      GraphQLModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

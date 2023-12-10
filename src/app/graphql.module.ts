@@ -3,7 +3,7 @@ import { Apollo, APOLLO_OPTIONS } from 'apollo-angular';
 import { InMemoryCache } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
 
-const uri = 'http://localhost:8080/graphql'; // Remplacez par l'URL de votre backend Spring
+const uri = 'http://localhost:8080'; // Remplacez par l'URL de votre backend Spring
 
 export function createApollo(httpLink: HttpLink): any {
     return {

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Apollo, gql } from 'apollo-angular';
 import { BehaviorSubject, filter } from 'rxjs';
 import { DeliveryRound } from '../models/delivery-round';
 import {ObservableCollection} from '../models/ObservableCollection';
@@ -11,8 +12,25 @@ export default class DeliveryPageService {
     public deliveryRoundsList$ = this.deliveryRoundsList.pipe(filter(v => v !== null));
 
     private deliveryRounds : DeliveryRound[]
+    data$: any;
 
-  constructor() { }
+  constructor(private apollo: Apollo) {
+      this.data$ = this.apollo.query({
+          query: gql`
+              query {
+                  allDeliveryRounds {
+                      # Specify the fields you want to retrieve
+                      documentId
+                      name
+                      deliveries {
+                          # Specify the fields for each delivery
+                          # ...
+                      }
+                  }
+              }
+          `,
+      }).valueChanges;
+  }
     public getDeliveriesRounds () : void {
         this.deliveryRounds = [
             {
@@ -70,7 +88,7 @@ export default class DeliveryPageService {
 
         ];
 
-        
+
         const deliveryCollection = new ObservableCollection<DeliveryRound>();
 
         // Add each delivery round to the ObservableCollection
