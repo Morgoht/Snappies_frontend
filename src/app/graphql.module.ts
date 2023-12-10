@@ -19,6 +19,7 @@ const uri = 'http://localhost:8080'; // Replace with your GraphQL server endpoin
             },
             deps: [HttpLink],
         },
+        Apollo, // Include Apollo in the providers array
     ],
 })
 export class GraphQLModule {
