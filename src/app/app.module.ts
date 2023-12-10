@@ -7,6 +7,7 @@ import {DeliveryPageModule} from "./features/deliveryPage/deliveryPage.module";
 import {LoginModule} from "./features/login/login.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ],
     imports: [
       BrowserModule,
+      CommonModule,
       AppRoutes,
       AdminPageModule,
       DeliveryPageModule,
