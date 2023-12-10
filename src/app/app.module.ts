@@ -7,6 +7,9 @@ import {DeliveryPageModule} from "./features/deliveryPage/deliveryPage.module";
 import {LoginModule} from "./features/login/login.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { GraphQLModule } from './graphql.module';
 
 
 @NgModule({
@@ -14,13 +17,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         AppComponent,
     ],
     imports: [
-      BrowserModule,
-      AppRoutes,
-      AdminPageModule,
-      DeliveryPageModule,
-      LoginModule,
-      ReactiveFormsModule,
-      BrowserAnimationsModule,
+        BrowserModule,
+        CommonModule,
+        AppRoutes,
+        AdminPageModule,
+        DeliveryPageModule,
+        LoginModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        GraphQLModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -15,11 +15,11 @@ const routes: Routes = [
     {
         path: DELIVERYROUNDSPAGEPATH,
         component: DeliveryRoundsPageComponent,
-        /*
+
         children: [
-            { path: DELIVERYROUNDSPAGEPATH, component: DeliveryRoundsPageComponent },
+            //{ path: DELIVERYROUNDSPAGEPATH + "/:id", component: DeliveryRoundsPageComponent },
         ]
-        */
+
     },
     { path: DELIVERYROUNDSPAGEPATH + "/:id", component: DeliveryRoundDetailPageComponent },
     { path: ADMINPAGEPATH, component: AdminPageComponent },

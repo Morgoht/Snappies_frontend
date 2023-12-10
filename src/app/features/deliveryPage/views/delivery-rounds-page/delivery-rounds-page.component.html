@@ -1,11 +1,14 @@
-<h1>Liste des tournées</h1>
-<div class="d-grid gap-3">
-    <button
-        class="btn btn-secondary btn-lg"
-        *ngFor="let deliveryRound of deliveryRounds"
-        (click)="afficherDetailsTournee(deliveryRound.id)"
-    >
-        {{ deliveryRound.name }}
-    </button>
+<div *ngIf="(deliveryRound$ | async) as deliveryRounds">
+
+    <h1>Liste des tournées</h1>
+    <div class="d-grid gap-3">
+        <button
+            class="btn btn-secondary btn-lg"
+            *ngFor="let round of deliveryRounds "
+            (click)="afficherDetailsTournee(round?.documentId)"
+        >
+           {{ round.name }}
+        </button>
+    </div>
+    <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>
