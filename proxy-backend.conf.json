@@ -1,11 +1,6 @@
 {
   "/api": {
-    "target": "put link to backend here",
-    "secure": false,
-    "changeOrigin": true,
-    "auth": "loginIfNeeded:PasswordIfNeeeded",
-    "pathRewrite": {
-      "^/api": "/"
-    }
+    "target": "http://localhost:8080",
+    "secure": false
   }
 }

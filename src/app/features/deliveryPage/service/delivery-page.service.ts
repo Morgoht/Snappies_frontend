@@ -21,8 +21,12 @@ export default class DeliveryPageService {
         this.getDeliveriesRoundsQuery().subscribe((response: GraphQLResponse) => {
             if (!response.loading) {
                 const deliveryRounds = response.data?.allDeliveryRounds || [];
-                console.log(deliveryRounds);
-                this.deliveryRoundsList.next(deliveryRounds);
+
+                // Create a new array with reversed order
+                const reversedDeliveryRounds = [...deliveryRounds].reverse();
+
+                console.log(reversedDeliveryRounds);
+                this.deliveryRoundsList.next(reversedDeliveryRounds);
             }
         });
     }
