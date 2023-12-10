@@ -23,6 +23,7 @@
     "lib": [
       "ES2022",
       "dom",
+      "esnext",
       "esnext.asynciterable"
     ]
   },

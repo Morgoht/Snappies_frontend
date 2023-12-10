@@ -1,4 +1,8 @@
+import { Order } from "./order";
+import { User } from "./user";
+
 export interface Delivery {
-    id : number;
-    name : string;
+    documentId : string;
+    order : Order;
+    driver : User;
 }

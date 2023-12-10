@@ -1,11 +1,11 @@
-// graphql.module.ts
-
 import { NgModule } from '@angular/core';
 import { Apollo, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client/core';
 
-const uri = 'http://localhost:8080'; // Replace with your GraphQL server endpoint
+
+
+const uri = 'http://localhost:8080/graphql'; // Replace with your GraphQL server endpoint
 
 @NgModule({
     providers: [
@@ -23,10 +23,4 @@ const uri = 'http://localhost:8080'; // Replace with your GraphQL server endpoin
     ],
 })
 export class GraphQLModule {
-    constructor(apollo: Apollo, httpLink: HttpLink) {
-        apollo.create({
-            link: httpLink.create({ uri }),
-            cache: new InMemoryCache(),
-        });
-    }
 }

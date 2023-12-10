@@ -1,7 +1,7 @@
 import { Delivery } from "./delivery";
 
 export interface DeliveryRound {
-    id : number;
+    documentId : string;
     name : string;
     deliveries : Delivery[]
 }
