@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DELIVERYROUNDSPAGEPATH } from 'src/app/shared/constants/path.constant';
+
 import DeliveryPageService from '../../service/delivery-page.service'
+
 @Component({
   selector: 'app-delivery-rounds-page',
   templateUrl: './delivery-rounds-page.component.html',
