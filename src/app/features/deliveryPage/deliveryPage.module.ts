@@ -6,6 +6,7 @@ import {SharedModule} from "../../shared/shared.module";
 import {RouterOutlet} from '@angular/router';
 import {DeliveryRoundsPageComponent} from "./views/delivery-rounds-page/delivery-rounds-page.component";
 import { CommonModule } from '@angular/common';
+import { GraphQLModule } from 'src/app/graphql.module';
 
 @NgModule({
   declarations: [
@@ -15,9 +16,10 @@ import { CommonModule } from '@angular/common';
     SharedModule,
       CommonModule,
       HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterOutlet,
+      FormsModule,
+      ReactiveFormsModule,
+      RouterOutlet,
+      GraphQLModule,
   ]
 })
 export class DeliveryPageModule {

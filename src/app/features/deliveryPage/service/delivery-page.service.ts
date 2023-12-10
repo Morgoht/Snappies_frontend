@@ -1,38 +1,59 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { BehaviorSubject, filter } from 'rxjs';
+import { BehaviorSubject, filter, Observable } from 'rxjs';
 import { DeliveryRound } from '../models/delivery-round';
 import {ObservableCollection} from '../models/ObservableCollection';
+import { skipWhile } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
 export default class DeliveryPageService {
     // @ts-ignore
-    private deliveryRoundsList = new BehaviorSubject<Observable<DeliveryRound>>(null);
+    private deliveryRoundsList = new BehaviorSubject<DeliveryRound[]>(null);
     public deliveryRoundsList$ = this.deliveryRoundsList.pipe(filter(v => v !== null));
 
     private deliveryRounds : DeliveryRound[]
-    data$: any;
+    deliveryRound$: Observable<DeliveryRound[]>;
 
-  constructor(private apollo: Apollo) {
-      this.data$ = this.apollo.query({
-          query: gql`
-              query {
-                  allDeliveryRounds {
-                      # Specify the fields you want to retrieve
-                      documentId
-                      name
-                      deliveries {
-                          # Specify the fields for each delivery
-                          # ...
-                      }
-                  }
-              }
-          `,
-      }).valueChanges;
-  }
-    public getDeliveriesRounds () : void {
-        this.deliveryRounds = [
+  constructor(private apollo: Apollo) { }
+    public getDeliveriesRounds(): void {
+        this.getDeliveriesRoundsQuery()
+            .pipe(
+                skipWhile(value => value === null)
+            ).subscribe((value: DeliveryRound[]) => {
+            this.deliveryRoundsList.next(value);
+        })
+
+    }
+
+    private getDeliveriesRoundsQuery(): Observable<DeliveryRound[]> {
+        this.deliveryRound$ =this.apollo.query<unknown>({
+            query: gql`
+                query {
+                    allDeliveryRounds {
+                        # Specify the fields you want to retrieve
+                        documentId
+                        name
+                        deliveries {
+                            documentId
+                            driver{
+                                documentId
+                            }
+                            order{
+                                documentId
+                            }
+                        }
+                    }
+                }
+            `,
+        });
+      return this.deliveryRound$;
+    }
+
+    public getDeliveriesRoundsbis () : void {
+        this.deliveryRoundsList.next(this.deliveryRound$)
+        /*this.deliveryRounds = [
             {
                 id: 1,
                 name: 'Tournée A',
@@ -88,19 +109,9 @@ export default class DeliveryPageService {
 
         ];
 
-
-        const deliveryCollection = new ObservableCollection<DeliveryRound>();
-
-        // Add each delivery round to the ObservableCollection
-        this.deliveryRounds.forEach(round => {
-            deliveryCollection.addItem(round);
-        });
-        this.deliveryRoundsList.next(deliveryCollection);
-        /*
-        this.deliveryRounds.deliveries.forEach((round) => {
-           this.deliveryRoundss.next(round)
-        });
-
          */
+
+
+
     }
 }
