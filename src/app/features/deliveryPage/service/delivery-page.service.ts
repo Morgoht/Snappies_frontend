@@ -1,57 +1,85 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
+import { ApolloQueryResult } from '@apollo/client/core';
 import { BehaviorSubject, filter, Observable } from 'rxjs';
 import { DeliveryRound } from '../models/deliveryRound';
-import { skipWhile } from 'rxjs/operators';
-import { GraphQLResponse } from '../models/graphql-types';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export default class DeliveryPageService {
-    // @ts-ignore
-    private deliveryRoundsList = new BehaviorSubject<DeliveryRound[]>(null);
-    public deliveryRoundsList$ = this.deliveryRoundsList.asObservable().pipe(filter(v => v !== null));
+    private deliveryRoundsList = new BehaviorSubject<DeliveryRound[]>([]);
+    public deliveryRoundsList$ = this.deliveryRoundsList
+        .asObservable()
+        .pipe(filter((v) => v !== null));
 
-    private deliveryRound$: Observable<any>;
+    private deliveryRound$: Observable<ApolloQueryResult<any>>;
 
-  constructor(private apollo: Apollo) { }
+    constructor(private apollo: Apollo) {}
+
     public getDeliveriesRounds(): void {
-        // @ts-ignore
-        this.getDeliveriesRoundsQuery().subscribe((response: GraphQLResponse) => {
-            if (!response.loading) {
-                const deliveryRounds = response.data?.allDeliveryRounds || [];
+        this.getDeliveriesRoundsQuery().subscribe(
+            (response: ApolloQueryResult<any>) => {
+                if (!response.loading) {
+                    const deliveryRounds =
+                        response.data?.allDeliveryRounds || [];
 
-                // Create a new array with reversed order
-                const reversedDeliveryRounds = [...deliveryRounds].reverse();
+                    // Create a new array with reversed order
+                    const reversedDeliveryRounds = [
+                        ...deliveryRounds,
+                    ].reverse();
 
-                console.log(reversedDeliveryRounds);
-                this.deliveryRoundsList.next(reversedDeliveryRounds);
-            }
-        });
+                    console.log(reversedDeliveryRounds);
+                    this.deliveryRoundsList.next(reversedDeliveryRounds);
+                }
+            },
+        );
     }
 
-    private getDeliveriesRoundsQuery(): Observable<DeliveryRound[]> {
-        this.deliveryRound$ =this.apollo.query({
+    private getDeliveriesRoundsQuery(): Observable<ApolloQueryResult<any>> {
+        this.deliveryRound$ = this.apollo.query({
             query: gql`
                 query {
                     allDeliveryRounds {
-                        # Specify the fields you want to retrieve
                         documentId
                         name
                         deliveries {
                             documentId
-                            driver{
+                            order {
                                 documentId
+                                orderLines {
+                                    documentId
+                                    article {
+                                        documentId
+                                        name
+                                        reserve
+                                        storageType
+                                    }
+                                    quantity
+                                }
+                                daycare {
+                                    documentId
+                                    name
+                                    email
+                                    address
+                                    phoneNumber
+                                }
                             }
-                            order{
+                            driver {
                                 documentId
+                                name
+                                lastname
+                                username
+                                email
+                                phoneNumber
                             }
+                            delivered
                         }
+                        roundEnded
                     }
                 }
             `,
         });
-      return this.deliveryRound$;
+        return this.deliveryRound$;
     }
 }

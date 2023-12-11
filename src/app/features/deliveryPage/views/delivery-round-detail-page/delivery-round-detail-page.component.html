@@ -1,18 +1,20 @@
-<div *ngIf="(deliveryRound$ ) as deliveryRound">
+<div *ngIf="deliveryRound$ | async as deliveryRound">
     <!-- delivery-round-detail-page.component.html -->
 
-    <p>delivery-round-detail-page works!</p>
+    <h1>Liste des livraisons</h1>
 
     <!-- Afficher le nom de la tournée -->
-    <h2>{{ deliveryRound.name }} - Détails de la tournée</h2>
+    <h2>{{ deliveryRoundFindById?.name }} - Détails de la tournée</h2>
 
+    <!-- Afficher le nom de la tournée -->
     <div class="d-grid gap-3">
-        <!-- Rediriger vers la page de détails de la livraison en cliquant sur un bouton -->
         <button
             class="btn btn-secondary btn-lg"
-            *ngFor="let delivery of deliveryRound"
-            (click)="afficherDetailsLivraison(delivery.id)">
-            {{ delivery.name }}
+            *ngFor="let delivery of deliveries"
+            (click)="afficherDetailsLivraison(delivery.documentId)"
+        >
+            {{ delivery.order.daycare.name }}
         </button>
     </div>
+    <router-outlet></router-outlet>
 </div>

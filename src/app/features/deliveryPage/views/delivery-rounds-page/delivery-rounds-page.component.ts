@@ -11,7 +11,7 @@ import DeliveryPageService from '../../service/delivery-page.service'
 })
 export class DeliveryRoundsPageComponent implements OnInit{
 
-    deliveryRound$ = this.deliveryPageService.deliveryRoundsList$; // Assurez-vous de définir correctement le type de vos données
+    deliveryRound$ = this.deliveryPageService.deliveryRoundsList$;
 
 
   constructor(private router: Router, private deliveryPageService : DeliveryPageService) {}

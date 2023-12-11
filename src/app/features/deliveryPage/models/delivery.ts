@@ -5,5 +5,5 @@ export interface Delivery {
     documentId : string;
     order : Order;
     driver : User;
-    delivered: boolean;
+    delivered: boolean; 
 }
