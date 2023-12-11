@@ -1,6 +1,6 @@
-import { ArticleType } from './articleType';
-
 export interface Article {
   documentId: string;
-  articleType: ArticleType;
+    name: string;
+    reserve: number;
+    storageType: string;
 }

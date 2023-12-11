@@ -4,4 +4,5 @@ export interface DeliveryRound {
     documentId : string;
     name : string;
     deliveries : Delivery[]
+    roundEnded: boolean;
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DeliveryRound } from '../../models/delivery-round';
+import { DeliveryRound } from '../../models/deliveryRound';
 import DeliveryPageService from '../../service/delivery-page.service'
 
 @Component({

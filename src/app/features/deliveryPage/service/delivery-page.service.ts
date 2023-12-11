@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { BehaviorSubject, filter, Observable } from 'rxjs';
-import { DeliveryRound } from '../models/delivery-round';
+import { DeliveryRound } from '../models/deliveryRound';
 import { skipWhile } from 'rxjs/operators';
 import { GraphQLResponse } from '../models/graphql-types';
 

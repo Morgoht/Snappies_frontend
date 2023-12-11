@@ -1,6 +1,6 @@
 // graphql-types.ts
 
-import { DeliveryRound } from "./delivery-round";
+import { DeliveryRound } from "./deliveryRound";
 
 export interface GraphQLResponse {
     data?: {
