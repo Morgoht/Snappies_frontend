@@ -11,7 +11,7 @@ import { LoginComponent } from './features/login/views/login/login.component';
 import { DeliveryRoundDetailPageComponent } from './features/deliveryPage/views/delivery-round-detail-page/delivery-round-detail-page.component';
 
 const routes: Routes = [
-    //{ path: '', redirectTo: DELIVERYROUNDSPAGEPATH, pathMatch: 'full' },
+    { path: '', redirectTo: DELIVERYROUNDSPAGEPATH, pathMatch: 'full' },
     {
         path: DELIVERYROUNDSPAGEPATH,
         component: DeliveryRoundsPageComponent,
