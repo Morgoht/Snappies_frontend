@@ -1,26 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DELIVERYROUNDSPAGEPATH } from 'src/app/shared/constants/path.constant';
-
-import DeliveryPageService from '../../service/delivery-page.service'
+import DeliveryPageService from '../../services/delivery-page.service';
 
 @Component({
-  selector: 'app-delivery-rounds-page',
-  templateUrl: './delivery-rounds-page.component.html',
-  styleUrl: './delivery-rounds-page.component.scss'
+    selector: 'app-delivery-rounds-page',
+    templateUrl: './delivery-rounds-page.component.html',
+    styleUrls: ['./delivery-rounds-page.component.scss'],
 })
-export class DeliveryRoundsPageComponent implements OnInit{
-
-    deliveryRound$ = this.deliveryPageService.deliveryRoundsList$;
-
-
-  constructor(private router: Router, private deliveryPageService : DeliveryPageService) {}
+export class DeliveryRoundsPageComponent implements OnInit {
+    deliveryRoundsList$ = this.deliveryPageService.deliveryRoundsList$;
+    constructor(
+        private router: Router,
+        private deliveryPageService: DeliveryPageService,
+    ) {}
 
     ngOnInit(): void {
-        this.deliveryPageService.getDeliveriesRounds()
+        this.deliveryPageService.getDeliveriesRounds();
     }
 
-  afficherDetailsTournee(deliveryRoundID: any) {
-    this.router.navigate([DELIVERYROUNDSPAGEPATH, deliveryRoundID]);
-  }
+    afficherDetailsTournee(deliveryRoundID: string) {
+        // Utilisez le service pour définir l'ID de la tournée
+        //this.deliveryPageService.setDeliveryRoundById(deliveryRoundID);
+        this.router.navigate([DELIVERYROUNDSPAGEPATH, deliveryRoundID]);
+    }
 }

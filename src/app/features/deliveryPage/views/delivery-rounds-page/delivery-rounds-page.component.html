@@ -1,13 +1,12 @@
-<div *ngIf="(deliveryRound$ | async) as deliveryRounds">
-
+<div *ngIf="deliveryRoundsList$ | async as deliveryRounds">
     <h1>Liste des tournées</h1>
     <div class="d-grid gap-3">
         <button
             class="btn btn-secondary btn-lg"
-            *ngFor="let round of deliveryRounds "
-            (click)="afficherDetailsTournee(round?.documentId)"
+            *ngFor="let deliveryRound of deliveryRoundsList$ | async"
+            (click)="afficherDetailsTournee(deliveryRound.documentId)"
         >
-           {{ round.name }}
+            {{ deliveryRound.name }}
         </button>
     </div>
     <router-outlet></router-outlet>

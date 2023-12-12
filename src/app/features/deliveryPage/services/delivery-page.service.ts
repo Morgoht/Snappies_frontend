@@ -13,7 +13,14 @@ export default class DeliveryPageService {
         .asObservable()
         .pipe(filter((v) => v !== null));
 
-    private deliveryRound$: Observable<ApolloQueryResult<any>>;
+    private deliveryRounds$: Observable<ApolloQueryResult<any>>;
+
+    // Nouveau BehaviorSubject pour stocker un objet DeliveryRound
+    // @ts-ignore
+    private deliveryRound = new BehaviorSubject<DeliveryRound>(null);
+    public deliveryRound$ = this.deliveryRound
+        .asObservable()
+        .pipe(filter((v) => v !== null));
 
     constructor(private apollo: Apollo) {}
 
@@ -37,7 +44,7 @@ export default class DeliveryPageService {
     }
 
     private getDeliveriesRoundsQuery(): Observable<ApolloQueryResult<any>> {
-        this.deliveryRound$ = this.apollo.query({
+        this.deliveryRounds$ = this.apollo.query({
             query: gql`
                 query {
                     allDeliveryRounds {
@@ -80,6 +87,26 @@ export default class DeliveryPageService {
                 }
             `,
         });
-        return this.deliveryRound$;
+        return this.deliveryRounds$;
+    }
+
+     // Nouvelles méthodes pour définir et récupérer l'objet DeliveryRound
+     public setDeliveryRoundById(deliveryRoundId: string): void {
+        // Obtenez la liste actuelle des tours de livraison
+        const deliveryRoundsList = this.deliveryRoundsList.value;
+    
+        // Recherchez l'élément avec l'ID correspondant dans la liste
+        const foundDeliveryRound = deliveryRoundsList.find(
+            (round) => round.documentId === deliveryRoundId
+        );
+    
+        // Mettez à jour le BehaviorSubject avec l'élément trouvé
+        if(foundDeliveryRound) {
+            this.deliveryRound.next(foundDeliveryRound);
+        }
+    }
+
+    public getDeliveryRound(): DeliveryRound | null {
+        return this.deliveryRound.value;
     }
 }
