@@ -3,10 +3,10 @@
     <div class="d-grid gap-3">
         <button
             class="btn btn-secondary btn-lg"
-            *ngFor="let deliveryRound of deliveryRoundsList$ | async"
-            (click)="afficherDetailsTournee(deliveryRound.documentId)"
+            *ngFor="let deliveryRound of deliveryRoundsList$ | async | keyvalue"
+            (click)="afficherDetailsTournee(deliveryRound.key)"
         >
-            {{ deliveryRound.name }}
+            {{ deliveryRound.value.name }}
         </button>
     </div>
     <router-outlet></router-outlet>

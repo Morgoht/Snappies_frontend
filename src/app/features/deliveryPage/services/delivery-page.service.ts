@@ -1,46 +1,48 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { ApolloQueryResult } from '@apollo/client/core';
-import { BehaviorSubject, filter, Observable } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable } from 'rxjs';
 import { DeliveryRound } from '../models/deliveryRound';
 
 @Injectable({
     providedIn: 'root',
 })
 export default class DeliveryPageService {
-    private deliveryRoundsList = new BehaviorSubject<DeliveryRound[]>([]);
-    public deliveryRoundsList$ = this.deliveryRoundsList
-        .asObservable()
-        .pipe(filter((v) => v !== null));
-
+    private deliveryRoundsList = new BehaviorSubject<Map<string,DeliveryRound>>(new Map);
+    public deliveryRoundsList$ = this.deliveryRoundsList.asObservable().pipe(filter((v) => v !== null));
     private deliveryRounds$: Observable<ApolloQueryResult<any>>;
-
-    // Nouveau BehaviorSubject pour stocker un objet DeliveryRound
     // @ts-ignore
     private deliveryRound = new BehaviorSubject<DeliveryRound>(null);
-    public deliveryRound$ = this.deliveryRound
-        .asObservable()
-        .pipe(filter((v) => v !== null));
+    public deliveryRound$ = this.deliveryRound.asObservable().pipe(filter((v) => v !== null));
 
     constructor(private apollo: Apollo) {}
 
     public getDeliveriesRounds(): void {
-        this.getDeliveriesRoundsQuery().subscribe(
-            (response: ApolloQueryResult<any>) => {
+        this.getDeliveriesRoundsQuery().pipe(
+            map((response: ApolloQueryResult<any>) => {
                 if (!response.loading) {
                     const deliveryRounds =
                         response.data?.allDeliveryRounds || [];
 
-                    // Create a new array with reversed order
-                    const reversedDeliveryRounds = [
-                        ...deliveryRounds,
-                    ].reverse();
+                    // Create a new map with documentID as keys
+                    const deliveryRoundsMap = new Map<string, DeliveryRound>();
+                    deliveryRounds.forEach((round: DeliveryRound) => {
+                        // Assuming documentID is a property of DeliveryRound
+                        deliveryRoundsMap.set(round.documentId, round);
+                    });
 
-                    console.log(reversedDeliveryRounds);
-                    this.deliveryRoundsList.next(reversedDeliveryRounds);
+                    console.log(deliveryRoundsMap);
+                    return deliveryRoundsMap;
                 }
-            },
-        );
+
+                // Add a return statement here for the case where !response.loading
+                return new Map<string, DeliveryRound>(); // You can return an empty map or handle it differently based on your needs
+            })
+        ).subscribe((deliveryRoundsMap: Map<string, DeliveryRound>) => {
+            if (deliveryRoundsMap) {
+                this.deliveryRoundsList.next(deliveryRoundsMap);
+            }
+        });
     }
 
     private getDeliveriesRoundsQuery(): Observable<ApolloQueryResult<any>> {
@@ -90,23 +92,5 @@ export default class DeliveryPageService {
         return this.deliveryRounds$;
     }
 
-     // Nouvelles méthodes pour définir et récupérer l'objet DeliveryRound
-     public setDeliveryRoundById(deliveryRoundId: string): void {
-        // Obtenez la liste actuelle des tours de livraison
-        const deliveryRoundsList = this.deliveryRoundsList.value;
-    
-        // Recherchez l'élément avec l'ID correspondant dans la liste
-        const foundDeliveryRound = deliveryRoundsList.find(
-            (round) => round.documentId === deliveryRoundId
-        );
-    
-        // Mettez à jour le BehaviorSubject avec l'élément trouvé
-        if(foundDeliveryRound) {
-            this.deliveryRound.next(foundDeliveryRound);
-        }
-    }
 
-    public getDeliveryRound(): DeliveryRound | null {
-        return this.deliveryRound.value;
-    }
 }

@@ -20,7 +20,7 @@ const routes: Routes = [
 
         children: [
             { path: DELIVERYROUNDSPAGEPATH, component: DeliveryRoundsPageComponent },
-            { path: DELIVERYROUNDSPAGEPATH + "/:id", component: DeliveryRoundDetailPageComponent },
+            { path: DELIVERYROUNDSPAGEPATH + "/:deliveryRoundID", component: DeliveryRoundDetailPageComponent },
         ]
 
     },

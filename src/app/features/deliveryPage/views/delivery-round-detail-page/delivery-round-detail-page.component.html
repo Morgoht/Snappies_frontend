@@ -1,20 +1,21 @@
-<div *ngIf="deliveryRound$ | async as deliveryRound">
-    <!-- delivery-round-detail-page.component.html -->
+<div *ngIf="deliveryRounds$ | async as deliveryRounds">
+    <div *ngIf="deliveryRound">
+        
+            <!-- delivery-round-detail-page.component.html -->
+            <h1>Liste des livraisons</h1>
 
-    <h1>Liste des livraisons</h1>
+            <!-- Afficher le nom de la tournée -->
+            <h2>{{ deliveryRound.name }} - Détails de la tournée</h2>
 
-    <!-- Afficher le nom de la tournée -->
-    <h2>{{ deliveryRoundFindById?.name }} - Détails de la tournée</h2>
-
-    <!-- Afficher le nom de la tournée -->
-    <div class="d-grid gap-3">
-        <button
-            class="btn btn-secondary btn-lg"
-            *ngFor="let delivery of deliveryRound.deliveries"
-            (click)="afficherDetailsLivraison(delivery.documentId)"
-        >
-            {{ delivery.order.daycare.name }}
-        </button>
+            <!-- Afficher le nom de la tournée-->
+            <div class="d-grid gap-3">
+                <button
+                    class="btn btn-secondary btn-lg"
+                    *ngFor="let delivery of deliveryRound.deliveries"
+                    (click)="afficherDetailsLivraison(delivery.documentId)">
+                    {{ delivery.order.daycare.name }}
+                </button>
+            </div>
     </div>
-    <router-outlet></router-outlet>
 </div>
+<router-outlet></router-outlet>

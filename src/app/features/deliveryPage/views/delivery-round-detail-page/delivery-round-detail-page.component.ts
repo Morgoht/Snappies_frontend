@@ -11,15 +11,13 @@ import { Observable } from 'rxjs';
     styleUrls: ['./delivery-round-detail-page.component.scss'],
 })
 export class DeliveryRoundDetailPageComponent implements OnInit {
-    deliveryRounds$: Observable<DeliveryRound[]> =
-        this.deliveryPageService.deliveryRoundsList$;
-    deliveryRound$: Observable<DeliveryRound> =
-        this.deliveryPageService.deliveryRound$;
+    deliveryRounds$: Observable<Map<string,DeliveryRound>> = this.deliveryPageService.deliveryRoundsList$;
+    deliveryRound: DeliveryRound
     deliveryRoundFindById: DeliveryRound | undefined;
-    deliveries: Delivery[] = [];
 
     constructor(
         private route: ActivatedRoute,
+
         private router: Router,
         private deliveryPageService: DeliveryPageService,
     ) {}
@@ -27,35 +25,13 @@ export class DeliveryRoundDetailPageComponent implements OnInit {
     ngOnInit() {
         this.route.params.subscribe((params) => {
             const deliveryRoundID = params['deliveryRoundID'].toString();
-            console.log('00: ' + deliveryRoundID);
+            this.deliveryRounds$.subscribe((deliveryRoundsMap: Map<string, DeliveryRound>) => {
 
-            this.deliveryPageService.setDeliveryRoundById(deliveryRoundID);
-            console.log(this.deliveryRound$)
-
-            
-            
-            /*
-            this.deliveryPageService.deliveryRoundsList$.subscribe(
-                (deliveryRounds: DeliveryRound[]) => {
-                    this.deliveryRoundFindById = deliveryRounds.find(
-                        (deliveryRound) =>
-                            deliveryRound.documentId === deliveryRoundID,
-                    );
-
-                    if (this.deliveryRoundFindById) {
-                        this.deliveries = this.deliveryRoundFindById.deliveries;
-                        this.deliveryPageService.setDeliveryRound(
-                            this.deliveryRoundFindById,
-                        );
-                    }else{
-                        console.log('DeliveryRound non trouvé');
-                    }
-                },
-            );
-            */
+                this.deliveryRound = deliveryRoundsMap.get(deliveryRoundID)!;
+                console.log(this.deliveryRound);
+            });
         });
     }
-
     afficherDetailsLivraison(livraisonId: string) {
         // Navigate to the delivery details page
         // this.router.navigate(['/delivery-details', livraisonId]);
