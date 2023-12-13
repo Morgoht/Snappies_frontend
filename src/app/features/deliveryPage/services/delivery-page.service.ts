@@ -3,13 +3,14 @@ import { Apollo, gql } from 'apollo-angular';
 import { ApolloQueryResult } from '@apollo/client/core';
 import { BehaviorSubject, filter, map, Observable } from 'rxjs';
 import { DeliveryRound } from '../models/deliveryRound';
+import { DeliveryRoundClass } from '../models/deliveryRoundClass';
 
 @Injectable({
     providedIn: 'root',
 })
 export default class DeliveryPageService {
     private deliveryRoundsList = new BehaviorSubject<
-        Map<string, DeliveryRound>
+        Map<string, DeliveryRoundClass>
     >(new Map());
     public deliveryRoundsList$ = this.deliveryRoundsList
         .asObservable()
@@ -26,30 +27,23 @@ export default class DeliveryPageService {
     public getDeliveriesRounds(): void {
         this.getDeliveriesRoundsQuery()
             .pipe(
-                map((response: ApolloQueryResult<any>) => {
+                map((response: ApolloQueryResult<any>): Map<string, DeliveryRoundClass> => {
                     if (!response.loading) {
-                        const deliveryRounds =
-                            response.data?.allDeliveryRounds || [];
-
-                        // Create a new map with documentID as keys
-                        const deliveryRoundsMap = new Map<
-                            string,
-                            DeliveryRound
-                        >();
+                        const deliveryRounds = response.data?.allDeliveryRounds || [];
+    
+                        const deliveryRoundsMap = new Map<string, DeliveryRoundClass>();
                         deliveryRounds.forEach((round: DeliveryRound) => {
-                            // Assuming documentID is a property of DeliveryRound
-                            deliveryRoundsMap.set(round.documentId, round);
+                            deliveryRoundsMap.set(round.documentId, new DeliveryRoundClass(round));
                         });
-
+    
                         console.log(deliveryRoundsMap);
                         return deliveryRoundsMap;
                     }
-
-                    // Add a return statement here for the case where !response.loading
-                    return new Map<string, DeliveryRound>(); // You can return an empty map or handle it differently based on your needs
+    
+                    return new Map<string, DeliveryRoundClass>();
                 }),
             )
-            .subscribe((deliveryRoundsMap: Map<string, DeliveryRound>) => {
+            .subscribe((deliveryRoundsMap: Map<string, DeliveryRoundClass>) => {
                 if (deliveryRoundsMap) {
                     this.deliveryRoundsList.next(deliveryRoundsMap);
                 }

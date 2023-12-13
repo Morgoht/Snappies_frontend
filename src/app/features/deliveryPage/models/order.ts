@@ -3,6 +3,6 @@ import { OrderLine } from './orderLine';
 
 export interface Order {
   documentId: string;
-  orderLine: OrderLine[];
+  orderLines: OrderLine[];
   daycare: Daycare;
 }
