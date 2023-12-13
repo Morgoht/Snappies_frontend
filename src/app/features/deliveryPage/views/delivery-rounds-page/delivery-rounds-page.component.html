@@ -1,11 +1,13 @@
-<h1>Liste des tournées</h1>
-<div class="d-grid gap-3">
-    <button
-        class="btn btn-secondary btn-lg"
-        *ngFor="let deliveryRound of deliveryRounds"
-        (click)="afficherDetailsTournee(deliveryRound)"
-    >
-        {{ deliveryRound }}
-    </button>
+<div *ngIf="deliveryRoundsList$ | async as deliveryRounds">
+    <h1>Liste des tournées</h1>
+    <div class="d-grid gap-3">
+        <button
+            class="btn btn-secondary btn-lg"
+            *ngFor="let deliveryRound of deliveryRoundsList$ | async | keyvalue"
+            (click)="afficherDetailsTournee(deliveryRound.key)"
+        >
+            {{ deliveryRound.value.name }}
+        </button>
+    </div>
+    <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>
