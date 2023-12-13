@@ -10,7 +10,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { GraphQLModule } from './graphql.module';
-
+import {FirebaseUIModule, firebase, firebaseui} from 'firebaseui-angular';
+import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+import { environment } from 'src/environnments/environments';
 
 @NgModule({
     declarations: [
@@ -27,6 +30,9 @@ import { GraphQLModule } from './graphql.module';
         BrowserAnimationsModule,
         HttpClientModule,
         GraphQLModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireAuthModule,
+        FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     ],
     providers: [],
     bootstrap: [AppComponent]

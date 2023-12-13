@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "snappiespfe"
+  },
+  "targets": {
+    "snappiespfe": {
+      "hosting": {
+        "front": [
+          "snappiespfe"
+        ]
+      }
+    }
   }
 }
