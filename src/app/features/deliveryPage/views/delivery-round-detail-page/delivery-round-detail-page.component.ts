@@ -39,6 +39,6 @@ export class DeliveryRoundDetailPageComponent implements OnInit {
         this.router.navigate([DELIVERYPAGEPATH + "/" + DELIVERYDETAILPAGEPATH + "/" + this.deliveryRoundID + "/" + deliveryId]);
     }
     goBack() {
-        this.router.navigate(['/']); // Navigate back to the previous page
+        window.history.back();
     }
 }

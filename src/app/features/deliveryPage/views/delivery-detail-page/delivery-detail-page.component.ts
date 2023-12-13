@@ -38,6 +38,6 @@ export class DeliveryDetailPageComponent implements OnInit {
   }
 
     goBack() {
-        this.router.navigate(['/']); // Navigate back to the previous page
+        window.history.back();
     }
 }
