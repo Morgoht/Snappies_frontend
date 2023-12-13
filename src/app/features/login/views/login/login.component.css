@@ -53,3 +53,42 @@
 .go-back-button button:hover {
     background-color: #45a049; /* Darker green color on hover */
 }
+.loading-overlay {
+    /* Initial state */
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+.loading-overlay.show {
+    /* State when loading is true */
+    opacity: 1;
+}
+
+.loading-spinner {
+    /* Define the rotating arrow animation */
+    animation: rotate 1s infinite linear;
+
+    /* Set the font size to make the arrow bigger */
+    font-size: 2em; /* Adjust the size as needed */
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.mat-dialog-content {
+    text-align: center;
+}
+button {
+    font-size: 1.5rem; /* Adjust the font size as needed */
+    padding: 10px 20px; /* Adjust the padding as needed */
+    margin-left: 25px;
+}
+h2{
+    text-align: center;
+}

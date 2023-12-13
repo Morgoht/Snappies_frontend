@@ -5,7 +5,7 @@ import {AppComponent} from './app.component';
 import {AdminPageModule} from "./features/adminPage/adminPage.module";
 import {DeliveryPageModule} from "./features/deliveryPage/deliveryPage.module";
 import {LoginModule} from "./features/login/login.module";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,6 +13,8 @@ import { GraphQLModule } from './graphql.module';
 import {FirebaseUIModule, firebase, firebaseui} from 'firebaseui-angular';
 import {AngularFireModule} from '@angular/fire/compat';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
     declarations: [
@@ -29,6 +31,9 @@ import {AngularFireAuthModule} from '@angular/fire/compat/auth';
         BrowserAnimationsModule,
         HttpClientModule,
         GraphQLModule,
+        FormsModule,
+        MatDialogModule,
+        MatButtonModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

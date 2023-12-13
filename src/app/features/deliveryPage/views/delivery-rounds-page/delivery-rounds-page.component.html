@@ -1,6 +1,10 @@
 
 <div *ngIf="deliveryRoundsList$ | async | keyvalue">
     <h1>Liste des tournées</h1>
+    <button *ngIf="(userChoice$ | async) === 'admin'" class="btn btn-secondary btn-lg rounded-circle custom-plus-button"(click)="redirectToCreationPage()">
+        +
+    </button>
+    <br>
     <div class="d-grid gap-3">
         <button
             class="btn btn-secondary btn-lg"

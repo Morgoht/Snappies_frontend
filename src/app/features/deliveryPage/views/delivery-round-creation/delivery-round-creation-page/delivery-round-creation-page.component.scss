@@ -1,9 +1,14 @@
-.btn {
-    line-height: 3;
-    font-size: 2em;
-    width: 80%;
+h2 {
+    text-align: center;
+}
+
+form {
+    max-width: 400px;
     margin: 0 auto;
-    color: black;
+}
+
+.mb-3 {
+    margin-bottom: 1.5rem;
 }
 .go-back-button {
     position: fixed;
@@ -25,14 +30,4 @@
 
 .go-back-button button:hover {
     background-color: #45a049; /* Darker green color on hover */
-}
-/* Add these styles for the custom plus button */
-.custom-plus-button {
-    width: 50px; /* Adjust the width as needed */
-    height: 50px; /* Adjust the height as needed */
-    border-radius: 50%; /* Make it a perfect circle */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem; /* Adjust the font size of the plus icon */
 }

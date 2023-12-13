@@ -1,12 +1,9 @@
-<div class="go-back-button">
-    <button (click)="goBack()">
-        Back
-    </button>
-</div>
+
+<!--
 <body>
 <div class="login-container">
     <div class="login-box">
-        <!-- Formulaire de connexion -->
+        Formulaire de connexion
         <form>
             <div class="form-group">
                 <label for="username">Username</label>
@@ -20,4 +17,15 @@
         </form>
     </div>
 </div>
+-->
 
+<h2 mat-dialog-title>Select User Role</h2>
+<mat-dialog-content>
+    <button mat-button (click)="selectRole('admin')">Admin</button>
+    <button mat-button (click)="selectRole('driver')">Driver</button>
+</mat-dialog-content>
+<div *ngIf="isLoading" class="loading-overlay show">
+    <!-- Your rotating arrow loading animation goes here -->
+    <div class="loading-spinner">&#x21BB;</div>
+    Loading...
+</div>
