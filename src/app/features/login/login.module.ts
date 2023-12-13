@@ -3,6 +3,7 @@ import {LoginComponent} from "./views/login/login.component";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../../shared/shared.module";
+import { RouterOutlet } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import {SharedModule} from "../../shared/shared.module";
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
+        RouterOutlet,
 
     ]
 })

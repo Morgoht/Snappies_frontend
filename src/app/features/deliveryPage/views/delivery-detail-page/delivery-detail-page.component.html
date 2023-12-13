@@ -1,3 +1,9 @@
+<div class="go-back-button">
+    <button (click)="goBack()">
+        Back
+    </button>
+</div>
+<br>
 <div *ngIf="delivery">
     <h1 class="text-center">{{ delivery.order.daycare.name }}</h1>
     <h2 class="text-center">{{ delivery.order.daycare.address }}</h2>

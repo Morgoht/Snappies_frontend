@@ -21,4 +21,8 @@ export class DeliveryRoundsPageComponent {
     afficherDetailsTournee(deliveryRoundID: string) {
         this.router.navigate([DELIVERYPAGEPATH+"/"+DELIVERYROUNDSPAGEPATH, deliveryRoundID]);
     }
+
+    goBack() {
+        this.router.navigate(['/']); // Navigate back to the previous page
+    }
 }

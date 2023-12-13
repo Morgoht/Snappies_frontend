@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,7 @@ export class LoginComponent implements OnInit {
 
     loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,private router: Router) {}
 
   ngOnInit(): void {
       this.loginForm = new FormGroup({
@@ -35,5 +37,8 @@ export class LoginComponent implements OnInit {
 
         // Handle your form submission here
         console.log(this.loginForm.value);
+    }
+    goBack() {
+        this.router.navigate(['/']); // Navigate back to the previous page
     }
 }
