@@ -13,7 +13,6 @@ import { GraphQLModule } from './graphql.module';
 import {FirebaseUIModule, firebase, firebaseui} from 'firebaseui-angular';
 import {AngularFireModule} from '@angular/fire/compat';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth';
-import { environment } from 'src/environnments/environments';
 
 @NgModule({
     declarations: [
@@ -30,9 +29,6 @@ import { environment } from 'src/environnments/environments';
         BrowserAnimationsModule,
         HttpClientModule,
         GraphQLModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFireAuthModule,
-        FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     ],
     providers: [],
     bootstrap: [AppComponent]

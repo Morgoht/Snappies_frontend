@@ -5,3 +5,24 @@
     margin: 0 auto;
     color: black;
 }
+.go-back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
+}
+
+.go-back-button button {
+    background-color: #4caf50; /* Green color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.go-back-button button:hover {
+    background-color: #45a049; /* Darker green color on hover */
+}
