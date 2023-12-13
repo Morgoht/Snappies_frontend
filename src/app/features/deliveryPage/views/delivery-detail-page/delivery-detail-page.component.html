@@ -1,0 +1,15 @@
+<div *ngIf="delivery">
+    <h1 class="text-center">{{ delivery.order.daycare.name }}</h1>
+    <h2 class="text-center">{{ delivery.order.daycare.address }}</h2>
+    <!-- Afficher le nom de la tournée-->
+    <div class="d-grid gap-3">
+        <button
+            class="btn btn-secondary btn-lg"
+            *ngFor="let orderLine of delivery.order.orderLinesMap | keyvalue"
+        >
+            {{ orderLine.value.article.name }}
+            -
+            {{ orderLine.value.quantity }}x
+        </button>
+    </div>
+</div>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
     ADMINPAGEPATH,
+    DELIVERYDETAILPAGEPATH,
     DELIVERYPAGEPATH,
     DELIVERYROUNDSPAGEPATH,
     LOGINPATH,
@@ -11,6 +12,7 @@ import { AdminPageComponent } from './features/adminPage/views/admin-page/admin-
 import { LoginComponent } from './features/login/views/login/login.component';
 import { DeliveryRoundDetailPageComponent } from './features/deliveryPage/views/delivery-round-detail-page/delivery-round-detail-page.component';
 import { DeliveryPageComponent } from './features/deliveryPage/views/delivery-page/delivery-page.component';
+import { DeliveryDetailPageComponent } from './features/deliveryPage/views/delivery-detail-page/delivery-detail-page.component';
 
 const routes: Routes = [
     { path: '', redirectTo: DELIVERYPAGEPATH + "/" + DELIVERYROUNDSPAGEPATH, pathMatch: 'full' },
@@ -20,7 +22,8 @@ const routes: Routes = [
 
         children: [
             { path: DELIVERYROUNDSPAGEPATH, component: DeliveryRoundsPageComponent },
-            { path: DELIVERYROUNDSPAGEPATH + "/:deliveryRoundID", component: DeliveryRoundDetailPageComponent },
+            { path: DELIVERYROUNDSPAGEPATH + "/:deliveryRoundID", component: DeliveryRoundDetailPageComponent},
+            { path: DELIVERYDETAILPAGEPATH + "/:deliveryRoundID" + "/:deliveryID", component: DeliveryDetailPageComponent },
         ]
 
     },

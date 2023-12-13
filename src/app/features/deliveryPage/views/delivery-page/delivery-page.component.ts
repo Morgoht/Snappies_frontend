@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import DeliveryPageService from '../../services/delivery-page.service';
 import { Observable } from 'rxjs';
-import { DeliveryRound } from '../../models/deliveryRound';
 import { ActivatedRoute } from '@angular/router';
+import { DeliveryRoundClass } from '../../models/deliveryRoundClass';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './delivery-page.component.html',
 })
 export class DeliveryPageComponent implements OnInit{
-    deliveryRounds$: Observable<Map<String,DeliveryRound>> =
+    deliveryRounds$: Observable<Map<String,DeliveryRoundClass>> =
         this.deliveryPageService.deliveryRoundsList$;
 
     constructor(private deliveryPageService: DeliveryPageService,private route: ActivatedRoute) {}

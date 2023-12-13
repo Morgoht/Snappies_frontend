@@ -8,12 +8,14 @@ import { CommonModule } from '@angular/common';
 import { GraphQLModule } from 'src/app/graphql.module';
 import { DeliveryRoundDetailPageComponent } from './views/delivery-round-detail-page/delivery-round-detail-page.component';
 import { DeliveryPageComponent } from './views/delivery-page/delivery-page.component';
+import { DeliveryDetailPageComponent } from './views/delivery-detail-page/delivery-detail-page.component';
 
 @NgModule({
   declarations: [
     DeliveryPageComponent,
     DeliveryRoundsPageComponent,
-    DeliveryRoundDetailPageComponent
+    DeliveryRoundDetailPageComponent,
+    DeliveryDetailPageComponent
   ],
   imports: [
     SharedModule,
