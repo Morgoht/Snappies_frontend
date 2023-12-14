@@ -97,4 +97,30 @@ export default class DeliveryPageService {
         });
         return this.deliveryRounds$;
     }
+
+    public toggleDeliveryStatusCompleted(deliveryDocumentId: string): Observable<any> {
+        return this.apollo.mutate({
+            mutation: gql`
+                mutation ToggleDeliveryStatus($deliveryDocumentId: ID!) {
+                    closeDelivery(deliveryId: $deliveryDocumentId)
+                }
+            `,
+            variables: {
+                deliveryDocumentId: deliveryDocumentId,
+            },
+        });
+    }
+
+    public toggleDeliveryStatusUncompleted(deliveryDocumentId: string): Observable<any> {
+        return this.apollo.mutate({
+            mutation: gql`
+                mutation ToggleDeliveryStatus($deliveryDocumentId: ID!) {
+                    openDelivery(deliveryId: $deliveryDocumentId)
+                }
+            `,
+            variables: {
+                deliveryDocumentId: deliveryDocumentId,
+            },
+        });
+    }
 }

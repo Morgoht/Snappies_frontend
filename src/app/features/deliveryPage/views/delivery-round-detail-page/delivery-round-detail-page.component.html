@@ -10,20 +10,46 @@
         <br />
         <!-- Bouton avec icône de camion -->
         <div class="text-center">
-            <button class="btn btn-primary" (click)="goToAllArticlesPerDeliveryRoundID()">
+            <button
+                class="btn btn-primary"
+                (click)="goToAllArticlesPerDeliveryRoundID()"
+            >
                 <i class="bi bi-truck btn-lg"></i>
             </button>
         </div>
         <br />
-        <!-- Afficher le nom de la tournée-->
+        <!-- Afficher le nom de la tournée -->
         <div class="d-grid gap-3">
-            <button
-                class="btn btn-secondary btn-lg"
+            <div
                 *ngFor="let delivery of deliveryRound.deliveriesMap | keyvalue"
-                (click)="showDeliveryDetails(delivery.key)"
+                class="d-flex align-items-center"
             >
-                {{ delivery.value.order.daycare.name }}
-            </button>
+                <!-- Bouton principal pour afficher les détails de la livraison -->
+                <button
+                    class="btn btn-secondary btn-lg flex-grow-1 customDisplay"
+                    (click)="showDeliveryDetails(delivery.key)"
+                >
+                    {{ delivery.value.order.daycare.name }}
+                </button>
+
+                <!-- Switch Bootstrap pour activer/désactiver la livraison -->
+                <div class="form-check form-switch">
+                    <input
+                        class="form-check-input form-control-lg"
+                        type="checkbox"
+                        role="switch"
+                        id="flexSwitchCheck{{ delivery.key }}"
+                        [checked]="delivery.value.delivered"
+                        (change)="
+                            toggleDeliveryStatus(delivery.value.documentId)
+                        "
+                    />
+                    <label
+                        class="form-check-label"
+                        for="flexSwitchCheck{{ delivery.key }}"
+                    ></label>
+                </div>
+            </div>
         </div>
     </div>
 </div>
