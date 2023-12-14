@@ -61,6 +61,33 @@ export class DeliveryRoundDetailPageComponent implements OnInit {
     // Nouvelle fonction pour la navigation vers un autre composant
     goToAllArticlesPerDeliveryRoundID() {
         // Utilisez le service Router pour naviguer vers le composant souhaité
-        this.router.navigate([ DELIVERYPAGEPATH, DELIVERYALLARTICLESPATH, this.deliveryRoundID]);
+        this.router.navigate([
+            DELIVERYPAGEPATH,
+            DELIVERYALLARTICLESPATH,
+            this.deliveryRoundID,
+        ]);
+    }
+
+    toggleDeliveryStatus(deliveryId: string) {
+        if(this.deliveryRound.deliveriesMap.get(deliveryId)!.delivered == false){
+            this.deliveryPageService.toggleDeliveryStatusCompleted(deliveryId).subscribe(
+                (result) => {
+                    this.deliveryRound.deliveriesMap.get(deliveryId)!.delivered = true;
+                },
+                (error) => {
+                    console.error(error);
+                },
+            );
+        } else {
+            this.deliveryPageService.toggleDeliveryStatusUncompleted(deliveryId).subscribe(
+                (result) => {
+                    this.deliveryRound.deliveriesMap.get(deliveryId)!.delivered = false;
+                },
+                (error) => {
+                    console.error(error);
+                },
+            );
+        }
+        
     }
 }
