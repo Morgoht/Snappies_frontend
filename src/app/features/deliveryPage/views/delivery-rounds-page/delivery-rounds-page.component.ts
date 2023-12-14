@@ -18,7 +18,7 @@ export class DeliveryRoundsPageComponent {
     ) {}
 
 
-    afficherDetailsTournee(deliveryRoundID: string) {
+    showdeliveryRoundDetails(deliveryRoundID: string) {
         this.router.navigate([DELIVERYPAGEPATH+"/"+DELIVERYROUNDSPAGEPATH, deliveryRoundID]);
     }
 
