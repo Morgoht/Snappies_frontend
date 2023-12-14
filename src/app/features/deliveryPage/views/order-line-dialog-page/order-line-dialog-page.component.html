@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Edit Value</h2>
+<form (ngSubmit)="onSaveClick()">
+    <div mat-dialog-content>
+        <p>Current value for {{ dialogData.key }}: {{ dialogData.value }}</p>
+        <div>
+            <label>New Quantity:</label>
+            <input type="number" name="newValue" placeholder="Enter new value" required>
+        </div>
+        <!-- Add more fields here as needed -->
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onCancelClick()">Cancel</button>
+        <button mat-button (click)="onSaveClick()">Save</button>
+    </div>
+</form>

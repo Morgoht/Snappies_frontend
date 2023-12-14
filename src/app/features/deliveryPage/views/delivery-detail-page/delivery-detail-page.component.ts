@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import DeliveryPageService from '../../services/delivery-page.service';
 import { DeliveryRoundClass } from '../../models/deliveryRoundClass';
 import { DeliveryClass } from '../../models/deliveryClass';
+import { MatDialog } from '@angular/material/dialog';
+import {OrderLineDialogComponent} from '../order-line-dialog-page/order-line-dialog-page.component';
 
 @Component({
   selector: 'app-delivery-detail-page',
@@ -15,7 +17,11 @@ export class DeliveryDetailPageComponent implements OnInit {
   deliveryRound: DeliveryRoundClass | undefined;
   delivery: DeliveryClass | undefined;
 
-  constructor(private route: ActivatedRoute, private deliveryPageService: DeliveryPageService, private router : Router) {}
+  constructor(private route: ActivatedRoute, 
+    private deliveryPageService: DeliveryPageService, 
+    private router : Router,
+    private dialog: MatDialog
+    ) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -34,6 +40,30 @@ export class DeliveryDetailPageComponent implements OnInit {
           }
         }
       });
+    });
+  }
+
+  editEntry(key: string, currentValue: number) {
+    const dialogRef = this.dialog.open(OrderLineDialogComponent, {
+      width: '250px',
+      data: { key, value: currentValue },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        // Update the value in your data source or perform required actions
+        if (this.delivery && this.delivery.order) {
+          const orderLineToUpdate = this.delivery.order.orderLinesMap.get(key);
+          if (orderLineToUpdate) {
+            // Assuming 'result' contains the new value from the dialog
+            orderLineToUpdate.quantity = result;
+
+            // Save changes to your data source using your service
+            // For example:
+            // this.deliveryPageService.updateOrderLine(orderLineToUpdate);
+          }
+        }
+      }
     });
   }
 

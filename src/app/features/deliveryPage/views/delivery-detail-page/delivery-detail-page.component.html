@@ -20,6 +20,7 @@
                         *ngFor="
                             let orderLine of delivery.order.orderLinesMap
                                 | keyvalue
+                            
                         "
                     >
                         <td class="customFont">
@@ -28,6 +29,12 @@
                         <td class="customFont">
                             {{ orderLine.value.quantity }}
                             {{ orderLine.value.article.storageType }}(s)
+                        </td>
+                        <td>
+                            <!-- Edit Button -->
+                            <button (click)="editEntry(orderLine.key, orderLine.value.quantity)">Edit</button>
+                            <!-- Delete Button -->
+                            <!--<button (click)="deleteEntry(entry.key)">Delete</button> -->
                         </td>
                     </tr>
                 </tbody>

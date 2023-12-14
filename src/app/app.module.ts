@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { GraphQLModule } from './graphql.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { GraphQLModule } from './graphql.module';
         BrowserAnimationsModule,
         HttpClientModule,
         GraphQLModule,
+        FormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

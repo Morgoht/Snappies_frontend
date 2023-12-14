@@ -119,4 +119,5 @@ export class AllArticlesPerDeliveryRoundPageComponent {
     goBack() {
         window.history.back();
     }
+   
 }
