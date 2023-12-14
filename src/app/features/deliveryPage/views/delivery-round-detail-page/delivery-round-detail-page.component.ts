@@ -63,4 +63,9 @@ export class DeliveryRoundDetailPageComponent implements OnInit {
         // Utilisez le service Router pour naviguer vers le composant souhaité
         this.router.navigate([ DELIVERYPAGEPATH, DELIVERYALLARTICLESPATH, this.deliveryRoundID]);
     }
+
+    toggleDeliveryStatus(deliveryId: string) {
+        //this.deliveryPageService.toggleDeliveryStatus(delivery.key);
+        console.log(deliveryId);
+    }
 }
