@@ -5,7 +5,7 @@
         <button
             class="btn btn-secondary btn-lg"
             *ngFor="let deliveryRound of deliveryRoundsList$ | async | keyvalue"
-            (click)="afficherDetailsTournee(deliveryRound.key)"
+            (click)="showdeliveryRoundDetails(deliveryRound.key)"
         >
             {{ deliveryRound.value.name }}
         </button>

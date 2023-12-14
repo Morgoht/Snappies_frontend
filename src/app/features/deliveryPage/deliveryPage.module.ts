@@ -9,13 +9,15 @@ import { GraphQLModule } from 'src/app/graphql.module';
 import { DeliveryRoundDetailPageComponent } from './views/delivery-round-detail-page/delivery-round-detail-page.component';
 import { DeliveryPageComponent } from './views/delivery-page/delivery-page.component';
 import { DeliveryDetailPageComponent } from './views/delivery-detail-page/delivery-detail-page.component';
+import { AllArticlesPerDeliveryRoundPageComponent } from './views/all-articles-per-delivery-round-page/all-articles-per-delivery-round-page.component';
 
 @NgModule({
   declarations: [
     DeliveryPageComponent,
     DeliveryRoundsPageComponent,
     DeliveryRoundDetailPageComponent,
-    DeliveryDetailPageComponent
+    DeliveryDetailPageComponent,
+    AllArticlesPerDeliveryRoundPageComponent
   ],
   imports: [
     SharedModule,
