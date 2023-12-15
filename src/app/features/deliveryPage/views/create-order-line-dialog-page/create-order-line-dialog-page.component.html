@@ -1,0 +1,22 @@
+<!-- create-order-line-dialog-page.component.html -->
+
+<div mat-dialog-content>
+  <!-- Liste déroulante pour les noms d'articles -->
+  <div class="form-group">
+    <label for="articleName">Article Name:</label>
+    <select id="articleName" class="form-control" [(ngModel)]="selectedArticleId" name="articleName" required>
+      <option *ngFor="let article of articles" [value]="article.documentId">{{ article.name }}</option>
+    </select>
+  </div>
+
+  <!-- Zone pour saisir la quantité -->
+  <div class="form-group">
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" class="form-control" [(ngModel)]="quantity" name="quantity" required>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <a mat-button class="btn btn-secondary" (click)="onCancelClick()">Cancel</a>
+  <button mat-button class="btn btn-success" (click)="onCreateOrderLineClick()">Create OrderLine</button>
+</div>

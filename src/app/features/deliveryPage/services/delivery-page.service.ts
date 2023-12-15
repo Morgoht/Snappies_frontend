@@ -5,6 +5,7 @@ import { BehaviorSubject, filter, map, Observable } from 'rxjs';
 import { DeliveryRound } from '../models/deliveryRound';
 import { DeliveryRoundClass } from '../models/deliveryRoundClass';
 import { OrderLine } from '../models/orderLine';
+import { Article } from '../models/article';
 
 @Injectable({
     providedIn: 'root',
@@ -187,5 +188,22 @@ export default class DeliveryPageService {
                 },
             })
             .pipe(map((result) => result.data as string));
+    }
+
+    public getAllArticles(): Observable<Article[]> {
+        return this.apollo
+            .query({
+                query: gql`
+                    query {
+                        allArticles {
+                            documentId
+                            name
+                            reserve
+                            storageType
+                        }
+                    }
+                `,
+            })
+            .pipe(map((result) => result.data as Article[]));
     }
 }

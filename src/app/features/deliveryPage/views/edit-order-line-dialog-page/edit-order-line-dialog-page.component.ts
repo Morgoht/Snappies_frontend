@@ -5,19 +5,19 @@ import DeliveryPageService from '../../services/delivery-page.service';
 
 @Component({
   selector: 'app-order-line-dialog-page',
-  templateUrl: './order-line-dialog-page.component.html',
-  styleUrls: ['./order-line-dialog-page.component.scss']
+  templateUrl: './edit-order-line-dialog-page.component.html',
+  styleUrls: ['./edit-order-line-dialog-page.component.scss']
 })
-export class OrderLineDialogPageComponent {
-  orderLineForm: FormGroup;
+export class EditOrderLineDialogPageComponent {
+  editOrderLineForm: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<OrderLineDialogPageComponent>,
+    public dialogRef: MatDialogRef<EditOrderLineDialogPageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private deliveryPageService: DeliveryPageService,
   ) {
-    this.orderLineForm = this.fb.group({
+    this.editOrderLineForm = this.fb.group({
       // Ajoutez les champs du formulaire en fonction de votre modèle de données
       newValue: [this.data.quantity, Validators.required],
       // Ajoutez d'autres champs si nécessaire
@@ -25,9 +25,9 @@ export class OrderLineDialogPageComponent {
   }
 
   onSaveClick(orderLineId: string): void {
-    if (this.orderLineForm.valid) {
+    if (this.editOrderLineForm.valid) {
       // Vous pouvez traiter les données du formulaire ici
-      const updatedQuantity = this.orderLineForm.value.newValue;
+      const updatedQuantity = this.editOrderLineForm.value.newValue;
 
       this.deliveryPageService.updateOrderLine(orderLineId, updatedQuantity).subscribe(
         (result) => {

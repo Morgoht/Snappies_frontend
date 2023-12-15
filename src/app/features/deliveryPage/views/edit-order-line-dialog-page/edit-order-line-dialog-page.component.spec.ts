@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OrderLineDialogPageComponent } from './order-line-dialog-page.component';
+import { EditOrderLineDialogPageComponent } from './edit-order-line-dialog-page.component';
 
 describe('OrderLineDialogPageComponent', () => {
-  let component: OrderLineDialogPageComponent;
-  let fixture: ComponentFixture<OrderLineDialogPageComponent>;
+  let component: EditOrderLineDialogPageComponent;
+  let fixture: ComponentFixture<EditOrderLineDialogPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OrderLineDialogPageComponent]
+      imports: [EditOrderLineDialogPageComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(OrderLineDialogPageComponent);
+    fixture = TestBed.createComponent(EditOrderLineDialogPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

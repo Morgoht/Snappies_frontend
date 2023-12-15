@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>Edit Value</h2>
-<form [formGroup]="orderLineForm" (ngSubmit)="onSaveClick(data.orderLineId)">
+<form [formGroup]="editOrderLineForm" (ngSubmit)="onSaveClick(data.orderLineId)">
     <div mat-dialog-content>
         <p>Current value: {{ data.quantity }}</p>
         <div>

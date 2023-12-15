@@ -11,7 +11,8 @@ import { DeliveryRoundDetailPageComponent } from './views/delivery-round-detail-
 import { DeliveryPageComponent } from './views/delivery-page/delivery-page.component';
 import { DeliveryDetailPageComponent } from './views/delivery-detail-page/delivery-detail-page.component';
 import { AllArticlesPerDeliveryRoundPageComponent } from './views/all-articles-per-delivery-round-page/all-articles-per-delivery-round-page.component';
-import { OrderLineDialogPageComponent } from './views/order-line-dialog-page/order-line-dialog-page.component';
+import { EditOrderLineDialogPageComponent } from './views/edit-order-line-dialog-page/edit-order-line-dialog-page.component';
+import { CreateOrderLineDialogPageComponent } from './views/create-order-line-dialog-page/create-order-line-dialog-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { OrderLineDialogPageComponent } from './views/order-line-dialog-page/ord
     DeliveryRoundDetailPageComponent,
     DeliveryDetailPageComponent,
     AllArticlesPerDeliveryRoundPageComponent,
-    OrderLineDialogPageComponent,
+    EditOrderLineDialogPageComponent,
+    CreateOrderLineDialogPageComponent,
   ],
   imports: [
     SharedModule,

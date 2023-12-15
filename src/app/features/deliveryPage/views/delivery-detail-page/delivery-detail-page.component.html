@@ -1,4 +1,5 @@
 <div class="container">
+    <br />
     <div class="go-back-button">
         <!-- Button to navigate back -->
         <button (click)="goBack()">Back</button>
@@ -6,26 +7,48 @@
     <div *ngIf="delivery">
         <h1 class="text-center">{{ delivery.order.daycare.name }}</h1>
         <h2 class="text-center">{{ delivery.order.daycare.address }}</h2>
+        <br />
+        <!-- Ajouter une icône "+" centrée horizontalement -->
+        <div class="text-center" (click)="openCreateOrderLineDialog()">
+            <i class="bi bi-plus-circle h1"></i>
+          </div>
+        <br />
         <div class="d-grid gap-3">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th class="customFont">Nom d'article</th>
                         <th class="customFont">Quantité</th>
-                        <th class="customFont">Actions</th> <!-- Nouvelle colonne pour les actions -->
+                        <th class="customFont">Actions</th>
+                        <!-- Nouvelle colonne pour les actions -->
                     </tr>
                 </thead>
                 <tbody class="">
                     <!-- Iterate over key-value pairs in orderLinesMap -->
-                    <tr *ngFor="let orderLine of delivery.order.orderLinesMap | keyvalue">
-                        <td class="customFont">{{ orderLine.value.article.name }}</td>
+                    <tr
+                        *ngFor="
+                            let orderLine of delivery.order.orderLinesMap
+                                | keyvalue
+                        "
+                    >
+                        <td class="customFont">
+                            {{ orderLine.value.article.name }}
+                        </td>
                         <td class="customFont">
                             {{ orderLine.value.quantity }}
                             {{ orderLine.value.article.storageType }}(s)
                         </td>
                         <td class="customFont">
                             <!-- Ajouter un bouton "Edit" avec un événement de clic pour ouvrir le popup -->
-                            <button class="btn btn-primary" (click)="openEditPopup(orderLine.value.documentId, orderLine.value.quantity)">
+                            <button
+                                class="btn btn-primary"
+                                (click)="
+                                    openEditPopup(
+                                        orderLine.value.documentId,
+                                        orderLine.value.quantity
+                                    )
+                                "
+                            >
                                 Edit
                             </button>
                         </td>
