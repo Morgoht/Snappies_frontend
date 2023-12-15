@@ -11,9 +11,10 @@ import DeliveryPageService from '../../services/delivery-page.service';
     templateUrl: './delivery-rounds-page.component.html',
     styleUrls: ['./delivery-rounds-page.component.scss'],
 })
-export class DeliveryRoundsPageComponent {
+export class DeliveryRoundsPageComponent  {
     userChoice$ = this.loadingService.userChoice$;
-    deliveryRoundsList$ = this.deliveryPageService.deliveryRoundsList$;
+    deliveryRoundsList$ = this.deliveryPageService.deliveryRoundDisplay$;
+
     constructor(
         private router: Router,
         private deliveryPageService: DeliveryPageService,

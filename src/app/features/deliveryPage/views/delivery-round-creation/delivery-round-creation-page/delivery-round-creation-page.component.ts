@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DELIVERYPAGEPATH, DELIVERYROUNDSPAGEPATH } from 'src/app/shared/constants/path.constant';
+import DeliveryPageService from '../../../services/delivery-page.service';
+import { DeliveryPageComponent } from '../../delivery-page/delivery-page.component';
 
 @Component({
     selector: 'app-delivery-round-creation-page',
@@ -9,7 +13,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class DeliveryRoundCreationPageComponent implements OnInit {
     deliveryForm: FormGroup;
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder,private deliveryRoundService: DeliveryPageService,private router : Router,
+                private deliverypage: DeliveryPageComponent) {}
 
     ngOnInit() {
         this.initializeForm();
@@ -18,18 +23,22 @@ export class DeliveryRoundCreationPageComponent implements OnInit {
     private initializeForm() {
         this.deliveryForm = this.fb.group({
             recipientName: ['', Validators.required],
-            address: ['', Validators.required],
-            deliveryDate: [null, Validators.required],
             // Add more form controls as needed
         });
     }
 
     onSubmit() {
         if (this.deliveryForm.valid) {
+            // Retrieve the value of the "name" field using optional chaining
+            const nameValue = this.deliveryForm.get('recipientName')?.value;
+            this.deliveryRoundService.createDeliveryRound(nameValue);
+
+            this.router.navigate(['/']);
             // Process the form data (save to server, etc.)
-            console.log('Form submitted:', this.deliveryForm.value);
+            console.log('Form submitted - Name:', nameValue);
         }
     }
+
     goBack() {
         window.history.back();
     }

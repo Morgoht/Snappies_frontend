@@ -29,7 +29,7 @@ export class LoginComponent {
             this.dialogRef.close(role);
             this.loadingService.setLoading(false);
             this.loadingService.setUserChoice(role);
-        }, 10); // Simulating a 2-second delay, adjust as needed
+        }, 3000); // Simulating a 2-second delay, adjust as needed
 
     }
 }

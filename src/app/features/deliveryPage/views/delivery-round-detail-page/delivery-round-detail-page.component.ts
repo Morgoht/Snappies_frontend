@@ -5,6 +5,8 @@ import DeliveryPageService from '../../services/delivery-page.service';
 import { Observable } from 'rxjs';
 import { DELIVERYDETAILPAGEPATH, DELIVERYPAGEPATH, DELIVERYROUNDSPAGEPATH } from 'src/app/shared/constants/path.constant';
 import { DeliveryRoundClass } from '../../models/deliveryRoundClass';
+import { MatDialog } from '@angular/material/dialog';
+import { EditDeliveryRoundPageComponent } from '../edit-delivery-page-dialog/edit-delivery-round-page/edit-delivery-round-page.component';
 
 @Component({
     selector: 'app-delivery-round-detail-page',
@@ -22,6 +24,7 @@ export class DeliveryRoundDetailPageComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private deliveryPageService: DeliveryPageService,
+        private dialog:MatDialog
     ) {}
 
     ngOnInit() {
@@ -40,5 +43,25 @@ export class DeliveryRoundDetailPageComponent implements OnInit {
     }
     goBack() {
         window.history.back();
+    }
+
+    openEditDialog(): void {
+        const dialogRef = this.dialog.open(EditDeliveryRoundPageComponent, {
+            width: '400px', // Set the width according to your design
+            data: {deliveryRoundId: this.deliveryRoundID,
+            },
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result === 'save') {
+                // Handle save logic
+            } else if (result === 'delete') {
+                console.log("DELETE TEST")
+
+                // Handle delete logic
+            } else {
+                // Handle cancel logic or do nothing
+            }
+        });
     }
 }

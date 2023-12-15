@@ -12,14 +12,22 @@ import { DeliveryRoundClass } from '../../models/deliveryRoundClass';
 
 })
 export class DeliveryPageComponent implements OnInit{
-    deliveryRounds$: Observable<Map<String,DeliveryRoundClass>> =
-        this.deliveryPageService.deliveryRoundsList$;
+    deliveryRoundDisplay: Map<string,string> = new Map<string, string>();
+    deliveryRoundsList$ = this.deliveryPageService.deliveryRoundsList$;
 
     constructor(private deliveryPageService: DeliveryPageService,private route: ActivatedRoute, private router: Router) {}
 
     ngOnInit(): void {
         this.deliveryPageService.getDeliveriesRounds();
+        this.deliveryRoundsList$.subscribe(value =>
+        {
+            console.log("test");
+            value.forEach(deliveryRound => {
+                this.deliveryRoundDisplay.set(deliveryRound.documentId, deliveryRound.name);
+                console.log(this.deliveryRoundDisplay.get(deliveryRound.documentId));
+            })
 
+        })
     }
     goBack() {
         this.router.navigate(['/']); // Navigate back to the previous page

@@ -19,3 +19,13 @@
 .go-back-button button:hover {
     background-color: #45a049; /* Darker green color on hover */
 }
+.edit-button-container {
+    text-align: center; /* Center the button */
+    margin-top: 20px; /* Add top margin for spacing */
+}
+.mat-select-value-text {
+    color: white !important; /* Set the text color to white */
+}
+.mat-select-value-text.mat-selected {
+    color: white !important; /* Set the text color to white */
+}

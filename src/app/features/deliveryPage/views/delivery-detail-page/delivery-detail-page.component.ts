@@ -26,8 +26,6 @@ export class DeliveryDetailPageComponent implements OnInit {
         this.deliveryRound = deliveryRoundsMap.get(deliveryRoundID);
 
         if (this.deliveryRound) {
-          console.log(this.deliveryRound);
-
           // Vérifiez que this.deliveryRound.deliveriesMap est défini avant d'y accéder
           if (this.deliveryRound.deliveriesMap) {
             this.delivery = this.deliveryRound.deliveriesMap.get(deliveryID);

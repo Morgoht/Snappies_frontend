@@ -1,18 +1,18 @@
 
 <div *ngIf="deliveryRoundsList$ | async | keyvalue">
-    <h1>Liste des tournées</h1>
-    <button *ngIf="(userChoice$ | async) === 'admin'" class="btn btn-secondary btn-lg rounded-circle custom-plus-button"(click)="redirectToCreationPage()">
-        +
-    </button>
-    <br>
-    <div class="d-grid gap-3">
-        <button
-            class="btn btn-secondary btn-lg"
-            *ngFor="let deliveryRound of deliveryRoundsList$ | async | keyvalue"
-            (click)="afficherDetailsTournee(deliveryRound.key)"
-        >
-            {{ deliveryRound.value.name }}
+        <h1>Liste des tournées</h1>
+        <button *ngIf="(userChoice$ | async) === 'admin'" class="btn btn-secondary btn-lg rounded-circle custom-plus-button"(click)="redirectToCreationPage()">
+            +
         </button>
-    </div>
-    <router-outlet></router-outlet>
+        <br>
+        <div class="d-grid gap-3">
+            <button
+                class="btn btn-secondary btn-lg"
+                *ngFor="let deliveryRound of deliveryRoundsList$ | async | keyvalue"
+                (click)="afficherDetailsTournee(deliveryRound.key)"
+            >
+                {{ deliveryRound.value }}
+            </button>
+        </div>
+        <router-outlet></router-outlet>
 </div>
