@@ -29,3 +29,17 @@
 .mat-select-value-text.mat-selected {
     color: white !important; /* Set the text color to white */
 }
+
+.customDisplay {
+    margin-right : 2rem;
+    margin-left: 0.5rem;
+}
+
+/* Styles pour l'interrupteur personnalisé */
+.form-check-input:checked {
+    background-color: green; /* Couleur en position "On" (vérifié) */
+}
+
+.form-check-input:not(:checked) {
+    background-color: orangered; /* Couleur en position "Off" (non vérifié) */
+}

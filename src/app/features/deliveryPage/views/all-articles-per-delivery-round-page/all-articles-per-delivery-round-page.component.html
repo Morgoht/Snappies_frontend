@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="go-back-button">
+        <!-- Button to navigate back -->
+        <button (click)="goBack()">Back</button>
+    </div>
+    <div *ngIf="deliveryRounds$ | async as deliveryRounds">
+        <div *ngIf="deliveryRound">
+            <h1 class="text-center">{{ deliveryRound.name }}</h1>
+            <br />
+            <h2 class="text-center">
+                Livreur : {{ deliveryRound.driver.name }}
+            </h2>
+            <br />
+
+            <!-- Bootstrap table to show article data -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="customFont">Nom d'article</th>
+                        <th class="customFont">Quantité</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Iterate over key-value pairs in articleQuantityMap -->
+                    <tr *ngFor="let entry of articleQuantityMap | keyvalue">
+                        <td class="customFont">{{ entry.key }}</td>
+                        <td class="customFont">{{ entry.value }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>

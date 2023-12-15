@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import DeliveryPageService from '../../services/delivery-page.service';
 import { DeliveryRoundClass } from '../../models/deliveryRoundClass';
 import { DeliveryClass } from '../../models/deliveryClass';
+import { MatDialog } from '@angular/material/dialog';
+import { OrderLineDialogPageComponent } from '../order-line-dialog-page/order-line-dialog-page.component';
 
 @Component({
   selector: 'app-delivery-detail-page',
@@ -15,7 +17,7 @@ export class DeliveryDetailPageComponent implements OnInit {
   deliveryRound: DeliveryRoundClass | undefined;
   delivery: DeliveryClass | undefined;
 
-  constructor(private route: ActivatedRoute, private deliveryPageService: DeliveryPageService, private router : Router) {}
+  constructor(private route: ActivatedRoute, private deliveryPageService: DeliveryPageService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -38,4 +40,17 @@ export class DeliveryDetailPageComponent implements OnInit {
     goBack() {
         window.history.back();
     }
+
+    openEditPopup(orderLineId: string ,quantity: number): void {
+      // Utiliser le composant de dialogue pour ouvrir le popup avec les données de la ligne
+      const dialogRef = this.dialog.open(OrderLineDialogPageComponent, {
+          width: '400px', // Ajustez la largeur selon vos besoins
+          data: { orderLineId: orderLineId, quantity: quantity }
+      });
+
+      // Vous pouvez écouter les événements du dialogue si nécessaire
+      dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed', result);
+      });
+  }
 }

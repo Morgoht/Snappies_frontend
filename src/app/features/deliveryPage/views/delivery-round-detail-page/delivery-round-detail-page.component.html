@@ -1,30 +1,57 @@
 <div class="go-back-button">
-    <button (click)="goBack()">
-        Back
-    </button>
-
+    <button (click)="goBack()">Back</button>
 </div>
 <div *ngIf="deliveryRounds$ | async as deliveryRounds">
     <div *ngIf="deliveryRound">
         <!-- Afficher le nom de la tournée -->
         <h1 class="text-center">{{ deliveryRound.name }}</h1>
+        <br />
         <div class="edit-button-container">
             <button mat-button color="primary" (click)="openEditDialog()">Edit</button>
         </div>
-
-        <br>
-        <div *ngIf="deliveryRound.driver">
-            <h2 class="text-center"> Livreur : {{ deliveryRound.driver.name}}</h2>
-
-            <br>
-            <!-- Afficher le nom de la tournée-->
-            <div class="d-grid gap-3">
+        <h2 class="text-center">Livreur : {{ deliveryRound.driver.name }}</h2>
+        <br />
+        <!-- Bouton avec icône de camion -->
+        <div class="text-center">
+            <button
+                class="btn btn-primary"
+                (click)="goToAllArticlesPerDeliveryRoundID()"
+            >
+                <i class="bi bi-truck btn-lg"></i>
+            </button>
+        </div>
+        <br />
+        <!-- Afficher le nom de la tournée -->
+        <div class="d-grid gap-3">
+            <div
+                *ngFor="let delivery of deliveryRound.deliveriesMap | keyvalue"
+                class="d-flex align-items-center"
+            >
+                <!-- Bouton principal pour afficher les détails de la livraison -->
                 <button
-                    class="btn btn-secondary btn-lg"
-                    *ngFor="let delivery of deliveryRound.deliveriesMap | keyvalue"
-                    (click)="afficherDetailsLivraison(delivery.key)">
+                    class="btn btn-secondary btn-lg flex-grow-1 customDisplay"
+                    (click)="showDeliveryDetails(delivery.key)"
+                >
                     {{ delivery.value.order.daycare.name }}
                 </button>
+
+                <!-- Switch Bootstrap pour activer/désactiver la livraison -->
+                <div class="form-check form-switch">
+                    <input
+                        class="form-check-input form-control-lg"
+                        type="checkbox"
+                        role="switch"
+                        id="flexSwitchCheck{{ delivery.key }}"
+                        [checked]="delivery.value.delivered"
+                        (change)="
+                            toggleDeliveryStatus(delivery.value.documentId)
+                        "
+                    />
+                    <label
+                        class="form-check-label"
+                        for="flexSwitchCheck{{ delivery.key }}"
+                    ></label>
+                </div>
             </div>
         </div>
     </div>
