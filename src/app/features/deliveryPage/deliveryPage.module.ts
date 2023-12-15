@@ -10,6 +10,10 @@ import { GraphQLModule } from 'src/app/graphql.module';
 import { DeliveryRoundDetailPageComponent } from './views/delivery-round-detail-page/delivery-round-detail-page.component';
 import { DeliveryPageComponent } from './views/delivery-page/delivery-page.component';
 import { DeliveryDetailPageComponent } from './views/delivery-detail-page/delivery-detail-page.component';
+import { DeliveryRoundCreationPageComponent } from './views/delivery-round-creation/delivery-round-creation-page/delivery-round-creation-page.component';
+import { EditDeliveryRoundPageComponent } from './views/edit-delivery-page-dialog/edit-delivery-round-page/edit-delivery-round-page.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 import { AllArticlesPerDeliveryRoundPageComponent } from './views/all-articles-per-delivery-round-page/all-articles-per-delivery-round-page.component';
 import { OrderLineDialogPageComponent } from './views/order-line-dialog-page/order-line-dialog-page.component';
 
@@ -21,6 +25,9 @@ import { OrderLineDialogPageComponent } from './views/order-line-dialog-page/ord
     DeliveryDetailPageComponent,
     AllArticlesPerDeliveryRoundPageComponent,
     OrderLineDialogPageComponent,
+    DeliveryDetailPageComponent,
+    DeliveryRoundCreationPageComponent,
+    EditDeliveryRoundPageComponent,
   ],
   imports: [
     SharedModule,
@@ -31,7 +38,8 @@ import { OrderLineDialogPageComponent } from './views/order-line-dialog-page/ord
       RouterOutlet,
       GraphQLModule,
       MatDialogModule,
-      ReactiveFormsModule,
+      MatSelectModule,
+      MatOptionModule,
   ]
 })
 export class DeliveryPageModule {

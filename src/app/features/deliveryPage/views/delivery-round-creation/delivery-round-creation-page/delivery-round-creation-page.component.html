@@ -1,0 +1,19 @@
+<div class="go-back-button">
+    <button (click)="goBack()">
+        Back
+    </button>
+</div>
+<br>
+<form [formGroup]="deliveryForm" (ngSubmit)="onSubmit()">
+    <h2>Create a Delivery</h2>
+
+    <div class="mb-3">
+        <label for="recipientName" class="form-label">Name</label>
+        <input type="text" class="form-control" id="recipientName" formControlName="recipientName" required>
+    </div>
+
+
+    <!-- Add more form controls as needed -->
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -5,12 +5,15 @@ import {AppComponent} from './app.component';
 import {AdminPageModule} from "./features/adminPage/adminPage.module";
 import {DeliveryPageModule} from "./features/deliveryPage/deliveryPage.module";
 import {LoginModule} from "./features/login/login.module";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { GraphQLModule } from './graphql.module';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 @NgModule({
     declarations: [
         AppComponent,
@@ -26,6 +29,11 @@ import { GraphQLModule } from './graphql.module';
         BrowserAnimationsModule,
         HttpClientModule,
         GraphQLModule,
+        FormsModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatOptionModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

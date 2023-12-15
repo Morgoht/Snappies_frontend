@@ -1,0 +1,20 @@
+<!-- Add this to your EditDialogComponent's template (edit-dialog.component.html) -->
+
+<h1 class="dialog-content">Edit Delivery Round</h1>
+
+<!-- Add a mat-select dropdown -->
+<mat-form-field class="full-width">
+    <mat-label>Select an option</mat-label>
+    <mat-select [(ngModel)]="selectedOption" name="selectedOption">
+        <mat-option *ngFor="let driver of allDrivers | async" [value]="driver">
+            {{ driver.name }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<!-- Add your form fields here for editing -->
+<div class="buttons">
+    <button mat-button class="dialog-button" (click)="onCancelClick()">Cancel</button>
+    <button mat-button color="primary" class="dialog-button" (click)="onSaveClick()">Save</button>
+    <button mat-button color="warn" class="dialog-button" (click)="onDeleteClick()">Delete</button>
+</div>

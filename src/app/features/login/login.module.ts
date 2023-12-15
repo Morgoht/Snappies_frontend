@@ -4,6 +4,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../../shared/shared.module";
 import { RouterOutlet } from '@angular/router';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
     declarations: [
@@ -18,6 +20,9 @@ import { RouterOutlet } from '@angular/router';
         FormsModule,
         ReactiveFormsModule,
         RouterOutlet,
+        FormsModule,
+        MatDialogModule,
+        MatButtonModule,
 
     ]
 })

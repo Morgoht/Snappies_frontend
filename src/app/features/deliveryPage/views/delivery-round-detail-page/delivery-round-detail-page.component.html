@@ -12,6 +12,9 @@
             <h1 class="title">{{ deliveryRound.name }}</h1>
         </div>
         <br />
+        <div class="edit-button-container">
+            <button mat-button color="primary" (click)="openEditDialog()">Edit</button>
+        </div>
         <h2 class="text-center">Livreur : {{ deliveryRound.driver?.name || "Non assigné" }}</h2>
         <br />
         <!-- Bouton avec icône de camion -->
