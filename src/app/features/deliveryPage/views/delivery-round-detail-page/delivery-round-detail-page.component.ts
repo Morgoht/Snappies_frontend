@@ -24,6 +24,7 @@ export class DeliveryRoundDetailPageComponent implements OnInit {
     deliveryRoundFindById: DeliveryRound | undefined;
 
     deliveryRoundID: string;
+    deliveryRoundNmae: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -65,7 +66,7 @@ export class DeliveryRoundDetailPageComponent implements OnInit {
     openEditDialog(): void {
         const dialogRef = this.dialog.open(EditDeliveryRoundPageComponent, {
             width: '400px', // Set the width according to your design
-            data: {deliveryRoundId: this.deliveryRoundID,
+            data: {deliveryRoundId: this.deliveryRoundID, deliveryRoundName : this.deliveryRound.name
             },
         });
 

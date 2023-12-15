@@ -35,9 +35,20 @@
     font-weight: bold; /* Add this line for bold text */
 }
 .edit-button-container {
-    text-align: center; /* Center the button */
-    margin-top: 20px; /* Add top margin for spacing */
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Adjust padding, margin, or any other styles as needed */
+  }
+  
+  .edit-button-container button {
+    background-color: transparent;
+    color: #35495e;
+    border: none;
+    font-size: 35px;
+    padding: 5%;
+    cursor: pointer;
+  }
 .mat-select-value-text {
     color: white !important; /* Set the text color to white */
 }

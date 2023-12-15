@@ -15,7 +15,7 @@ export class EditDeliveryRoundPageComponent {
     constructor(
         public dialogRef: MatDialogRef<EditDeliveryRoundPageComponent>,
         private deliveryService : DeliveryPageService,
-        @Inject(MAT_DIALOG_DATA) public data: { deliveryRoundId: string }
+        @Inject(MAT_DIALOG_DATA) public data: { deliveryRoundId: string, deliveryRoundName: string }
     ) {
         this.deliveryService.getAllDrivers()
     }
@@ -23,10 +23,23 @@ export class EditDeliveryRoundPageComponent {
         this.dialogRef.close();
     }
 
-    onSaveClick(): void {
-        // Implement save logic here
-        this.dialogRef.close();
-    }
+    onSaveClick(userId: string): void {
+        this.deliveryService.updateDeliveryRound(this.data.deliveryRoundId, this.data.deliveryRoundName, userId)
+          .subscribe(
+            (result) => {
+              // Handle successful update here, if needed
+              console.log('Delivery round updated:', result);
+              this.dialogRef.close(); // Close the dialog after successful update
+              window.location.reload();
+            },
+            (error) => {
+              // Log the error message or detailed error information
+              console.error('Error updating delivery round:', error);
+              // Handle error here, show an error message to the user, etc.
+            }
+          );
+      }
+      
 
     onDeleteClick(): void {
         console.log("TEST DELETE")

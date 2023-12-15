@@ -176,43 +176,43 @@ export default class DeliveryPageService {
     }
 
 
-    public updateDeliveryRound(deliveryRoundId: string,name: string,driverId: string,roundEnded: boolean): Observable<DeliveryRound> {
+    public updateDeliveryRound(
+        deliveryRoundId: string,
+        name?: string,
+        driverId?: string,
+        roundEnded?: boolean
+      ): Observable<DeliveryRound> {
         const mutation = gql`
-            mutation UpdateDeliveryRound(
-                $deliveryRoundId: ID!,
-                $name: String,
-                $driverId: ID,
-                $roundEnded: Boolean
+          mutation UpdateDeliveryRound(
+            $deliveryRoundId: ID!,
+            $name: String,
+            $driverId: ID,
+          ) {
+            updateDeliveryRound(
+              deliveryRoundId: $deliveryRoundId,
+              name: $name,
+              driverId: $driverId,
             ) {
-                updateDeliveryRound(
-                    deliveryRoundId: $deliveryRoundId,
-                    name: $name,
-                    driverId: $driverId,
-                    roundEnded: $roundEnded
-                ) {
-                    documentId
-                    name
-                    driver {
-                        documentId
-                        name
-                    }
-                    roundEnded
-                }
+              documentId
+              name
+              roundEnded
             }
+          }
         `;
-
+        
         return this.apollo
-            .mutate<{ updateDeliveryRound: DeliveryRound }>({
-                mutation,
-                variables: {
-                    deliveryRoundId,
-                    name,
-                    driverId,
-                    roundEnded,
-                },
-            })
-            .pipe(map((result) => result.data?.updateDeliveryRound as DeliveryRound));
-    }
+          .mutate<{ updateDeliveryRound: DeliveryRound }>({
+            mutation,
+            variables: {
+              deliveryRoundId,
+              name: name || null,
+              driverId: driverId || null,
+            },
+          })
+          .pipe(map((result) => result.data?.updateDeliveryRound as DeliveryRound));
+      }
+      
+      
 
     public deleteDelivery(documentId:string): void {
         console.log("test DELETE SERVICE ");
