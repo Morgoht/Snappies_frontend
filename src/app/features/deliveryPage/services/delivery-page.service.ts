@@ -125,22 +125,31 @@ export default class DeliveryPageService {
     }
 
     public createDeliveryRound(name: string){
+
         this.apollo
         .mutate({
             mutation: gql`
                 mutation CreateDeliveryRound($name: String!, $driverId: ID) {
-                    createDeliveryRound(name: $name, driverId: $driverId){
+                    createDeliveryRound(name: $name, driverId: $driverId) {
                         name
                         documentId
                     }
                 }
             `,
             variables: {
-                name:name,
+                name: name,
                 driverId: null,
             },
         })
-        
+        .subscribe(
+            (result) => {
+                console.log('Created Delivery Round:');
+            },
+            (error) => {
+                console.error('Mutation error:', error);
+            }
+        );
+
     }
 
     public getAllDrivers(): void {
