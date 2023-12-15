@@ -28,6 +28,7 @@ export class DeliveryRoundsPageComponent  {
 
     goBack() {
         window.history.back();
+        
     }
     redirectToCreationPage(){
         this.router.navigate([DELIVERYPAGEPATH+"/"+DELIVERYROUNDCREATIONPAGEPATH]);
