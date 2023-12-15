@@ -7,6 +7,7 @@ import { LoginComponent } from '../views/login/login.component';
 })
 export class LoginService {
     private hasSelectedRole = false;
+    private  selectedRole :string;
 
     constructor(private dialog: MatDialog) {}
 
@@ -15,16 +16,21 @@ export class LoginService {
             const dialogRef = this.dialog.open(LoginComponent, {
                 disableClose: true,
                 width: '400px',
+               
             });
 
             dialogRef.afterClosed().subscribe((result) => {
                 if (result) {
                     // Handle the selected user role (result)
-                    console.log('Selected user role:', result);
+                    console.log('Choisissez votre rôle:', result);
                 }
-
+                this.selectedRole = result;
                 this.hasSelectedRole = true;
             });
         }
+    }
+
+    public getSelectedRole():string{
+      return this.selectedRole;
     }
 }

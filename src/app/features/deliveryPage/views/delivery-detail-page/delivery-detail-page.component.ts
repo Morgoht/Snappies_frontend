@@ -6,7 +6,7 @@ import { DeliveryRoundClass } from '../../models/deliveryRoundClass';
 import { DeliveryClass } from '../../models/deliveryClass';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderLineDialogPageComponent } from '../order-line-dialog-page/order-line-dialog-page.component';
-import { tap } from 'rxjs/operators';
+import { LoadingService } from 'src/app/shared/service/loading.service';
 
 
 @Component({
@@ -15,11 +15,15 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./delivery-detail-page.component.scss'],
 })
 export class DeliveryDetailPageComponent implements OnInit {
+  userChoice$ = this.loadingService.userChoice$;
   deliveryRounds$: Observable<Map<string,DeliveryRoundClass>> = this.deliveryPageService.deliveryRoundsList$;
   deliveryRound: DeliveryRoundClass | undefined;
   delivery: DeliveryClass | undefined;
 
-  constructor(private route: ActivatedRoute, private deliveryPageService: DeliveryPageService, private dialog: MatDialog) {}
+  constructor(private route: ActivatedRoute, 
+    private deliveryPageService: DeliveryPageService, 
+    private dialog: MatDialog,
+    private loadingService: LoadingService,) {}
 
   ngOnInit() {
   this.route.params.subscribe((params) => {

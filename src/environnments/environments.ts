@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: '' // <---- Inserer ici le port du backend
+  apiBaseUrl: 'https://snappiesbackend.azurewebsites.net' // <---- Inserer ici le port du backend
 };
 
 /*

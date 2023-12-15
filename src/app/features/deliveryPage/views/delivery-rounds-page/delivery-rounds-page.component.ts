@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {DELIVERYROUNDCREATIONPAGEPATH, DELIVERYROUNDSPAGEPATH } from 'src/app/shared/constants/path.constant';
 import { DELIVERYPAGEPATH } from 'src/app/shared/constants/path.constant';
 import { LoadingService } from 'src/app/shared/service/loading.service';
+import {LoginService} from 'src/app/features/login/service/login.service';
 
 import DeliveryPageService from '../../services/delivery-page.service';
 
@@ -14,12 +15,15 @@ import DeliveryPageService from '../../services/delivery-page.service';
 export class DeliveryRoundsPageComponent  {
     userChoice$ = this.loadingService.userChoice$;
     deliveryRoundsList$ = this.deliveryPageService.deliveryRoundsList$;
+    
 
     constructor(
         private router: Router,
         private deliveryPageService: DeliveryPageService,
         private loadingService: LoadingService,
-    ) {}
+        private loginService: LoginService,
+        
+    ) {console.log('Selected user role:', loginService.getSelectedRole())}
 
 
     showdeliveryRoundDetails(deliveryRoundID: string) {

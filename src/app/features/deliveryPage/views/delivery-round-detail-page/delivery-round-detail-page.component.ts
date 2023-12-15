@@ -11,6 +11,7 @@ import {
 import { DeliveryRoundClass } from '../../models/deliveryRoundClass';
 import { MatDialog } from '@angular/material/dialog';
 import { EditDeliveryRoundPageComponent } from '../edit-delivery-page-dialog/edit-delivery-round-page/edit-delivery-round-page.component';
+import { LoadingService } from 'src/app/shared/service/loading.service';
 
 @Component({
     selector: 'app-delivery-round-detail-page',
@@ -18,6 +19,7 @@ import { EditDeliveryRoundPageComponent } from '../edit-delivery-page-dialog/edi
     styleUrls: ['./delivery-round-detail-page.component.scss'],
 })
 export class DeliveryRoundDetailPageComponent implements OnInit {
+    userChoice$ = this.loadingService.userChoice$;
     deliveryRounds$: Observable<Map<string, DeliveryRoundClass>> =
         this.deliveryPageService.deliveryRoundsList$;
     deliveryRound: DeliveryRoundClass;
@@ -30,6 +32,7 @@ export class DeliveryRoundDetailPageComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private deliveryPageService: DeliveryPageService,
+        private loadingService: LoadingService,
         private dialog:MatDialog
     ) {}
 

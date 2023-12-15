@@ -19,10 +19,10 @@
 </div>
 -->
 
-<h2 mat-dialog-title>Select User Role</h2>
+<h2 mat-dialog-title>Choisissez votre rôle</h2>
 <mat-dialog-content>
-    <button mat-button (click)="selectRole('admin')">Admin</button>
-    <button mat-button (click)="selectRole('driver')">Driver</button>
+    <button mat-button (click)="selectRole('admin')">Gérant</button>
+    <button mat-button (click)="selectRole('driver')">Livreur</button>
 </mat-dialog-content>
 <div *ngIf="isLoading" class="loading-overlay show">
     <!-- Your rotating arrow loading animation goes here -->

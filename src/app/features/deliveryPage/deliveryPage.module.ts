@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { AllArticlesPerDeliveryRoundPageComponent } from './views/all-articles-per-delivery-round-page/all-articles-per-delivery-round-page.component';
 import { OrderLineDialogPageComponent } from './views/order-line-dialog-page/order-line-dialog-page.component';
+import { LoginModule } from '../login/login.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { OrderLineDialogPageComponent } from './views/order-line-dialog-page/ord
       MatDialogModule,
       MatSelectModule,
       MatOptionModule,
+      LoginModule
   ]
 })
 export class DeliveryPageModule {

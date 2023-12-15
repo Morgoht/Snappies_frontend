@@ -18,7 +18,7 @@
                     <tr>
                         <th class="tableTitle">Nom d'article</th>
                         <th class="tableTitle">Quantité</th>
-                        <th class="tableTitle">Actions</th> <!-- Nouvelle colonne pour les actions -->
+                        <th class="tableTitle"  *ngIf="(userChoice$ | async) === 'admin'">Actions</th> <!-- Nouvelle colonne pour les actions -->
                     </tr>
                 </thead>
                 <tbody class="">
@@ -30,7 +30,7 @@
                         {{ orderLine.value.quantity }}
                         {{ orderLine.value.article.storageType }}(s)
                       </td>
-                      <td class="customFont">
+                      <td class="customFont"  *ngIf="(userChoice$ | async) === 'admin'">
                         <button class="btn btn-primary" (click)="openEditPopup(orderLine.value.documentId, orderLine.value.quantity)">
                           Edit
                         </button>
