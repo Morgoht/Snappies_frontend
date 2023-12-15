@@ -42,6 +42,7 @@ export class DeliveryRoundDetailPageComponent implements OnInit {
             );
         });
     }
+    
     showDeliveryDetails(deliveryId: string) {
         // Naviguer vers la page de détails de livraison avec le documentId
         this.router.navigate([
@@ -69,25 +70,34 @@ export class DeliveryRoundDetailPageComponent implements OnInit {
     }
 
     toggleDeliveryStatus(deliveryId: string) {
-        if(this.deliveryRound.deliveriesMap.get(deliveryId)!.delivered == false){
-            this.deliveryPageService.toggleDeliveryStatusCompleted(deliveryId).subscribe(
-                (result) => {
-                    this.deliveryRound.deliveriesMap.get(deliveryId)!.delivered = true;
-                },
-                (error) => {
-                    console.error(error);
-                },
-            );
+        if (
+            this.deliveryRound.deliveriesMap.get(deliveryId)!.delivered == false
+        ) {
+            this.deliveryPageService
+                .toggleDeliveryStatusCompleted(deliveryId)
+                .subscribe(
+                    (result) => {
+                        this.deliveryRound.deliveriesMap.get(
+                            deliveryId,
+                        )!.delivered = true;
+                    },
+                    (error) => {
+                        console.error(error);
+                    },
+                );
         } else {
-            this.deliveryPageService.toggleDeliveryStatusUncompleted(deliveryId).subscribe(
-                (result) => {
-                    this.deliveryRound.deliveriesMap.get(deliveryId)!.delivered = false;
-                },
-                (error) => {
-                    console.error(error);
-                },
-            );
+            this.deliveryPageService
+                .toggleDeliveryStatusUncompleted(deliveryId)
+                .subscribe(
+                    (result) => {
+                        this.deliveryRound.deliveriesMap.get(
+                            deliveryId,
+                        )!.delivered = false;
+                    },
+                    (error) => {
+                        console.error(error);
+                    },
+                );
         }
-        
     }
 }
