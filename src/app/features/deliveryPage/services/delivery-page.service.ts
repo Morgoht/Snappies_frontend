@@ -317,4 +317,25 @@ export default class DeliveryPageService {
             })
             .pipe(map((result) => result.data as string));
     }
+
+    public wasUpdated(orderLineId: string): Observable<boolean>{
+        return this.apollo
+        .query({
+          query: gql`
+            query WasUpdated($orderLineId: ID!) {
+              wasUpdated(orderLineId: $orderLineId)
+            }
+          `,
+          variables: {
+            orderLineId: orderLineId,
+          },
+        })
+        .pipe(
+          map((result: any) => {
+            // Assuming the result from the query returns an object with a field 'wasUpdated'
+            // Modify this according to the actual structure of your response
+            return result?.data?.wasUpdated || false; // Defaulting to false if 'wasUpdated' is undefined
+          })
+        );
+    }
 }
