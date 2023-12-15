@@ -1,26 +1,52 @@
 .go-back-button {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 999;
+    position: relative;
+
 }
 
 .go-back-button button {
-    background-color: #4caf50; /* Green color */
-    color: white;
-    padding: 10px 20px;
+    background-color: transparent;
+    color: #35495e; /* Adjust the color as needed */
     border: none;
-    border-radius: 5px;
+    font-size: 35px; /* Adjust the font size as needed */
+    padding: 5%;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
 }
 
-.go-back-button button:hover {
-    background-color: #45a049; /* Darker green color on hover */
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: auto;
+     
+}
+.text-center{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #35495e; /* Adjust the color as needed */
+}
+.subtitle{
+    font-family: 'Roboto', sans-serif;
+    color: #35495e;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.customFont{
-    font-size: 20px;
-    padding-bottom: 25px;
+.title {
+    font-family: 'Roboto', sans-serif;
+    color: #35495e;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold; /* Add this line for bold text */
+}
+
+
+.tableTitle{
+    font-family: 'Roboto', sans-serif;
+    color: #35495e;
+    text-transform: uppercase;
+}
+.container{
+    padding: 18px;
 }

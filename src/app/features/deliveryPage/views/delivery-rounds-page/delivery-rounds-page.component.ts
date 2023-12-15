@@ -24,5 +24,6 @@ export class DeliveryRoundsPageComponent {
 
     goBack() {
         window.history.back();
+        
     }
 }
