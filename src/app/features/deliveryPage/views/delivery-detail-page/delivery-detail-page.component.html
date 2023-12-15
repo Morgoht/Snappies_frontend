@@ -12,22 +12,22 @@
                     <tr>
                         <th class="customFont">Nom d'article</th>
                         <th class="customFont">Quantité</th>
+                        <th class="customFont">Actions</th> <!-- Nouvelle colonne pour les actions -->
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="">
                     <!-- Iterate over key-value pairs in orderLinesMap -->
-                    <tr
-                        *ngFor="
-                            let orderLine of delivery.order.orderLinesMap
-                                | keyvalue
-                        "
-                    >
-                        <td class="customFont">
-                            {{ orderLine.value.article.name }}
-                        </td>
+                    <tr *ngFor="let orderLine of delivery.order.orderLinesMap | keyvalue">
+                        <td class="customFont">{{ orderLine.value.article.name }}</td>
                         <td class="customFont">
                             {{ orderLine.value.quantity }}
                             {{ orderLine.value.article.storageType }}(s)
+                        </td>
+                        <td class="customFont">
+                            <!-- Ajouter un bouton "Edit" avec un événement de clic pour ouvrir le popup -->
+                            <button class="btn btn-primary" (click)="openEditPopup(orderLine.value.documentId, orderLine.value.quantity)">
+                                Edit
+                            </button>
                         </td>
                     </tr>
                 </tbody>

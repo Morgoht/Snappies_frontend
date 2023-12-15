@@ -4,6 +4,7 @@ import { ApolloQueryResult } from '@apollo/client/core';
 import { BehaviorSubject, filter, map, Observable } from 'rxjs';
 import { DeliveryRound } from '../models/deliveryRound';
 import { DeliveryRoundClass } from '../models/deliveryRoundClass';
+import { OrderLine } from '../models/orderLine';
 
 @Injectable({
     providedIn: 'root',
@@ -27,21 +28,32 @@ export default class DeliveryPageService {
     public getDeliveriesRounds(): void {
         this.getDeliveriesRoundsQuery()
             .pipe(
-                map((response: ApolloQueryResult<any>): Map<string, DeliveryRoundClass> => {
-                    if (!response.loading) {
-                        const deliveryRounds = response.data?.allDeliveryRounds || [];
-    
-                        const deliveryRoundsMap = new Map<string, DeliveryRoundClass>();
-                        deliveryRounds.forEach((round: DeliveryRound) => {
-                            deliveryRoundsMap.set(round.documentId, new DeliveryRoundClass(round));
-                        });
-    
-                        console.log(deliveryRoundsMap);
-                        return deliveryRoundsMap;
-                    }
-    
-                    return new Map<string, DeliveryRoundClass>();
-                }),
+                map(
+                    (
+                        response: ApolloQueryResult<any>,
+                    ): Map<string, DeliveryRoundClass> => {
+                        if (!response.loading) {
+                            const deliveryRounds =
+                                response.data?.allDeliveryRounds || [];
+
+                            const deliveryRoundsMap = new Map<
+                                string,
+                                DeliveryRoundClass
+                            >();
+                            deliveryRounds.forEach((round: DeliveryRound) => {
+                                deliveryRoundsMap.set(
+                                    round.documentId,
+                                    new DeliveryRoundClass(round),
+                                );
+                            });
+
+                            console.log(deliveryRoundsMap);
+                            return deliveryRoundsMap;
+                        }
+
+                        return new Map<string, DeliveryRoundClass>();
+                    },
+                ),
             )
             .subscribe((deliveryRoundsMap: Map<string, DeliveryRoundClass>) => {
                 if (deliveryRoundsMap) {
@@ -98,7 +110,9 @@ export default class DeliveryPageService {
         return this.deliveryRounds$;
     }
 
-    public toggleDeliveryStatusCompleted(deliveryDocumentId: string): Observable<any> {
+    public toggleDeliveryStatusCompleted(
+        deliveryDocumentId: string,
+    ): Observable<any> {
         return this.apollo.mutate({
             mutation: gql`
                 mutation ToggleDeliveryStatus($deliveryDocumentId: ID!) {
@@ -111,7 +125,9 @@ export default class DeliveryPageService {
         });
     }
 
-    public toggleDeliveryStatusUncompleted(deliveryDocumentId: string): Observable<any> {
+    public toggleDeliveryStatusUncompleted(
+        deliveryDocumentId: string,
+    ): Observable<any> {
         return this.apollo.mutate({
             mutation: gql`
                 mutation ToggleDeliveryStatus($deliveryDocumentId: ID!) {
@@ -122,5 +138,54 @@ export default class DeliveryPageService {
                 deliveryDocumentId: deliveryDocumentId,
             },
         });
+    }
+
+    public updateOrderLine(
+        orderLineId: string,
+        quantity: number,
+    ): Observable<OrderLine> {
+        return this.apollo
+            .mutate({
+                mutation: gql`
+                    mutation UpdateOrderLine(
+                        $orderLineId: ID!
+                        $quantity: Float!
+                    ) {
+                        updateOrderLine(
+                            orderLineId: $orderLineId
+                            quantity: $quantity
+                        ) {
+                            documentId
+                            article {
+                                documentId
+                                name
+                                reserve
+                                storageType
+                            }
+                            quantity
+                        }
+                    }
+                `,
+                variables: {
+                    orderLineId: orderLineId,
+                    quantity: quantity,
+                },
+            })
+            .pipe(map((result) => result.data as OrderLine));
+    }
+
+    public deleteOrderLine(orderLineId: string): Observable<string> {
+        return this.apollo
+            .mutate({
+                mutation: gql`
+                    mutation DeleteOrderLine($orderLineId: ID!) {
+                        deleteOrderLine(orderLineId: $orderLineId)
+                    }
+                `,
+                variables: {
+                    orderLineId: orderLineId,
+                },
+            })
+            .pipe(map((result) => result.data as string));
     }
 }
