@@ -13,7 +13,7 @@ import DeliveryPageService from '../../services/delivery-page.service';
 })
 export class DeliveryRoundsPageComponent  {
     userChoice$ = this.loadingService.userChoice$;
-    deliveryRoundsList$ = this.deliveryPageService.deliveryRoundDisplay$;
+    deliveryRoundsList$ = this.deliveryPageService.deliveryRoundsList$;
 
     constructor(
         private router: Router,

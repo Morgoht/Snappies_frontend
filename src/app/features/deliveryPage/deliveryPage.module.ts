@@ -11,7 +11,6 @@ import { DeliveryRoundDetailPageComponent } from './views/delivery-round-detail-
 import { DeliveryPageComponent } from './views/delivery-page/delivery-page.component';
 import { DeliveryDetailPageComponent } from './views/delivery-detail-page/delivery-detail-page.component';
 import { DeliveryRoundCreationPageComponent } from './views/delivery-round-creation/delivery-round-creation-page/delivery-round-creation-page.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { EditDeliveryRoundPageComponent } from './views/edit-delivery-page-dialog/edit-delivery-round-page/edit-delivery-round-page.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
