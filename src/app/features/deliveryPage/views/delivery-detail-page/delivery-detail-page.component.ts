@@ -6,6 +6,8 @@ import { DeliveryRoundClass } from '../../models/deliveryRoundClass';
 import { DeliveryClass } from '../../models/deliveryClass';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderLineDialogPageComponent } from '../order-line-dialog-page/order-line-dialog-page.component';
+import { tap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-delivery-detail-page',
@@ -20,24 +22,28 @@ export class DeliveryDetailPageComponent implements OnInit {
   constructor(private route: ActivatedRoute, private deliveryPageService: DeliveryPageService, private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.route.params.subscribe((params) => {
-      const deliveryRoundID = params['deliveryRoundID'].toString();
-      const deliveryID = params['deliveryID'].toString();
+  this.route.params.subscribe((params) => {
+    const deliveryRoundID = params['deliveryRoundID'].toString();
+    const deliveryID = params['deliveryID'].toString();
 
-      this.deliveryRounds$.subscribe((deliveryRoundsMap: Map<string, DeliveryRoundClass>) => {
-        this.deliveryRound = deliveryRoundsMap.get(deliveryRoundID);
+    this.deliveryRounds$.subscribe((deliveryRoundsMap: Map<string, DeliveryRoundClass>) => {
+      this.deliveryRound = deliveryRoundsMap.get(deliveryRoundID);
 
-        if (this.deliveryRound) {
-          console.log(this.deliveryRound);
-
-          // Vérifiez que this.deliveryRound.deliveriesMap est défini avant d'y accéder
-          if (this.deliveryRound.deliveriesMap) {
-            this.delivery = this.deliveryRound.deliveriesMap.get(deliveryID);
+      if (this.deliveryRound ) {
+        // Check if this.deliveryRound.deliveriesMap is defined before accessing it
+        if (this.deliveryRound.deliveriesMap) {
+          this.delivery = this.deliveryRound.deliveriesMap.get(deliveryID);
+          if (this.delivery && this.delivery.order && this.delivery.order.orderLinesMap) {
+            for (const orderLineId of this.delivery.order.orderLinesMap.keys()) {
+              this.fetchUpdateStatusForOrderLine(orderLineId);
+            }
           }
         }
-      });
+      }
     });
-  }
+  });
+}
+
 
     goBack() {
         window.history.back();
@@ -55,4 +61,21 @@ export class DeliveryDetailPageComponent implements OnInit {
           console.log('The dialog was closed', result);
       });
   }
+
+// In your component:
+updateStatusMap: { [key: string]: boolean } = {};
+
+// Function to fetch update status for each orderLineId
+fetchUpdateStatusForOrderLine(orderLineId: string) {
+  this.wasUpdated(orderLineId).subscribe((result: boolean) => {
+    this.updateStatusMap[orderLineId] = result;
+  });
+}
+
+wasUpdated(orderLineId: string): Observable<boolean> {
+  return this.deliveryPageService.wasUpdated(orderLineId).pipe(
+  
+  );
+}
+
 }
