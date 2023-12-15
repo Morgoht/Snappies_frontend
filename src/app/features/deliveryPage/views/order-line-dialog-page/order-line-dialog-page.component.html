@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Edit Value</h2>
+<form [formGroup]="orderLineForm" (ngSubmit)="onSaveClick(data.orderLineId)">
+    <div mat-dialog-content>
+        <p>Current value: {{ data.quantity }}</p>
+        <div>
+            <label>New Quantity:</label>
+            <input formControlName="newValue" type="number" placeholder="Enter new value" required>
+            <!-- Ajoutez d'autres champs de formulaire si nécessaire -->
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <a mat-button class="btn btn-secondary" (click)="onCancelClick()">Cancel</a>
+        <button mat-button type="submit" class="btn btn-success">Save</button>
+        <a mat-button class="btn btn-danger" (click)="onDeleteClick(data.orderLineId)">Supprimer</a>
+    </div>
+</form>
