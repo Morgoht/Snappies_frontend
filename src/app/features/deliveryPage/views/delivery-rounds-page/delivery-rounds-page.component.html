@@ -1,6 +1,9 @@
 
 <div *ngIf="deliveryRoundsList$ | async | keyvalue">
-    <h1>Liste des tournées</h1>
+    <div class="title-container">
+        <h1 class="title">Liste des tournées</h1>
+    </div>
+    <section class="sectionList">
     <div class="d-grid gap-3">
         <button
             class="btn btn-secondary btn-lg"
@@ -10,5 +13,6 @@
             {{ deliveryRound.value.name }}
         </button>
     </div>
+</section>
     <router-outlet></router-outlet>
 </div>

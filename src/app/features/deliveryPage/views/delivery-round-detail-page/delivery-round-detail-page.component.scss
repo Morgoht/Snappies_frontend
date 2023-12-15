@@ -1,24 +1,41 @@
 .go-back-button {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 999;
+    position: relative;
+
 }
 
 .go-back-button button {
-    background-color: #4caf50; /* Green color */
-    color: white;
-    padding: 10px 20px;
+    background-color: transparent;
+    color: #35495e; /* Adjust the color as needed */
     border: none;
-    border-radius: 5px;
+    font-size: 35px; /* Adjust the font size as needed */
+    padding: 5%;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
 }
 
-.go-back-button button:hover {
-    background-color: #45a049; /* Darker green color on hover */
+/* Add a new style block or update your existing CSS file */
+.text-center{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #35495e; /* Adjust the color as needed */
 }
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: auto;
+     
+}
+
+.title {
+    font-family: 'Roboto', sans-serif;
+    color: #35495e;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold; /* Add this line for bold text */
+}
+
+
 
 .customDisplay {
     margin-right : 2rem;
@@ -27,9 +44,43 @@
 
 /* Styles pour l'interrupteur personnalisé */
 .form-check-input:checked {
-    background-color: green; /* Couleur en position "On" (vérifié) */
+    background-color: rgb(82, 146, 82); /* Couleur en position "On" (vérifié) */
 }
 
 .form-check-input:not(:checked) {
-    background-color: orangered; /* Couleur en position "Off" (non vérifié) */
+    background-color: rgb(219, 122, 122); /* Couleur en position "Off" (non vérifié) */
 }
+
+.sectionList{
+    background-color: rgb(219, 235, 255);
+    margin: 5%;
+    padding: 2%;
+    border-radius: 15px;
+}
+
+.truck-button {
+    font-size: 40px; /* Smaller font size */
+    text-align: center;
+    background-color: #35495e; /* Desired background color */
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px; /* Adjusted height */
+    width: 150px; /* Adjusted width */
+    border-radius: 50%; /* Make it a circle */
+    margin: 0 auto; /* Center the button horizontally */
+}
+
+.truck-button button {
+    color: white; /* Text color */
+    background-color: transparent; /* Transparent button background */
+    border: none; /* Remove button border */
+    cursor: pointer;
+    font-size: inherit; /* Inherit font size from parent */
+}
+
+.container{
+    padding: 18px;
+}
+

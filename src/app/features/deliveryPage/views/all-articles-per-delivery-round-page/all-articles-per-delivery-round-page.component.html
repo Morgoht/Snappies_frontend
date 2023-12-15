@@ -1,23 +1,25 @@
 <div class="container">
     <div class="go-back-button">
-        <!-- Button to navigate back -->
-        <button (click)="goBack()">Back</button>
-    </div>
+            <button (click)="goBack()">
+                <i class="bi bi-arrow-left-circle"></i> <!-- Rounded arrow icon in a circle -->
+           </button>
+       </div>
     <div *ngIf="deliveryRounds$ | async as deliveryRounds">
         <div *ngIf="deliveryRound">
-            <h1 class="text-center">{{ deliveryRound.name }}</h1>
+            <div class="title-container">
+                <h1 class="title">{{ deliveryRound.name }}</h1>
+            </div>
+           
             <br />
-            <h2 class="text-center">
-                Livreur : {{ deliveryRound.driver.name }}
-            </h2>
-            <br />
-
+        <h2 class="text-center">Livreur : {{ deliveryRound.driver?.name || "Non assigné"}}</h2>
+        <br />
+        <h2 class="subtitle">Cargaison totale</h2>
             <!-- Bootstrap table to show article data -->
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th class="customFont">Nom d'article</th>
-                        <th class="customFont">Quantité</th>
+                        <th class="tableTitle">Nom d'article</th>
+                        <th class="tableTitle">Quantité</th>
                     </tr>
                 </thead>
                 <tbody>
